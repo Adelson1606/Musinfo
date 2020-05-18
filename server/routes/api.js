@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const request = require('axios')
-// const gapi = require('googleapis')
 
 const Music = require('../models/Music')
 
@@ -12,6 +11,36 @@ const googleApiParams = {
   key: 'AIzaSyDHn1socGyIKPmXU5VvisDMbZ9Sl4U3x70'
 }
 
+const yandexApiParams = {
+  lang: 'en-ru',
+  key: 'trnsl.1.1.20200518T065621Z.ed83ca0e1dd27529.8800a647be442891e8c11a0d364f2d809488a75d'
+}
+
+async function apiTranslate (lyrics) {
+  const textForTranslate = encodeURIComponent(lyrics)
+  const qs = new URLSearchParams(yandexApiParams).toString()
+  const yandexreq = await request(`https://translate.yandex.net/api/v1.5/tr.json/translate?${qs}&text=${textForTranslate}`)
+  const translatedText = yandexreq.data.text
+  return (translatedText)
+}
+
+router.get('/translate', async function (req, res) {
+  const singer = req.query.singer.toLowerCase()
+  const song = req.query.song.toLowerCase()
+  const lyricreq = await request(`https://api.lyrics.ovh/v1/${singer}/${song}`)
+  const lyricsString = lyricreq.data.lyrics
+  const data = await apiTranslate(lyricsString)
+  const lyricsArrData = data[0].split(/\r?\n/) 
+  res.send(lyricsArrData)
+})
+
+const toTitleCase = (phrase) => {
+  return phrase
+    .toLowerCase()
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ')
+}
 
 async function apiRequest (singer, song) {
   const q = singer + ' ' + song
@@ -38,16 +67,16 @@ router.get('/music/', async function (req, res) {
   if (!data) {
     res.status(404).end()  
   }
-  const songPreview = data.deezerArrData.data.find(s => s.title === (song.charAt(0).toUpperCase() + song.slice(1)))
-  const songInfo = {
+  const songPreview = data.deezerArrData.data.find(s => s.title === toTitleCase(song))
+  let songInfo = {
     name: data.youtubedata.snippet.title,
     songName: song,
     singerName: singer,
     lyricsArr: data.lyricsArrData,
     youTubeURL: data.youtubedata.id.videoId,
-    youTubeTitle: data.youtubedata.snippet.title,
-    preview: songPreview.preview
+    youTubeTitle: data.youtubedata.snippet.title
   }
+  if(songPreview) songInfo['preview'] = songPreview.preview
   const lenthOfall = data.deezerArrData.data.length
   const getRandom1 = Math.floor(Math.random() * lenthOfall)
   const getRandom2 = Math.floor(Math.random() * lenthOfall)
