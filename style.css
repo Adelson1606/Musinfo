@@ -1,0 +1,228 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+
+.container {
+
+    display: grid;
+    grid-template-columns: 1fr 15% 1fr;
+    grid-template-rows: 100px 300px 200px 150px 150px;
+
+}
+
+/* borders for reference - will be removed later */
+
+.box-1 {
+    background-image: linear-gradient(to left, #dfe6e9, #7f8c8d);
+
+    /* start/end of edges */
+    grid-column: 1/2;
+    grid-row: 1/2;
+    border-style:groove;
+
+    /* display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(5, 1fr); */
+    /* grid-template-areas: 
+      "a a"
+      "b b"
+      "c c"
+      "d d"
+      "e e";
+      justify-items: center;
+      align-items: center; */
+
+
+
+}
+
+.box-2 {
+    background: #dfe6e9;
+    grid-column: 2/3;
+    grid-row: 1/2;
+    border-style:groove;
+}
+
+.box-3 {
+    background-image: linear-gradient(to right, #dfe6e9, #7f8c8d);
+
+    grid-column: 3/4;
+    grid-row: 1/2;
+    border-style:groove;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+
+
+}
+
+.box-4 {
+    background-image: linear-gradient(to left, #dfe6e9, #7f8c8d);
+
+    /* grid-area: a ; */
+    grid-column: 1/2;
+    grid-row: 2/3;
+    border-style:groove;
+
+
+}
+
+.box-5 {
+    background: #dfe6e9;
+    grid-column: 2/3;
+    grid-row: 2/6;
+    /* grid-area: b ; */
+    border-style:groove;
+
+
+
+}
+
+.box-6 {
+    background-image: linear-gradient(to right, #dfe6e9, #7f8c8d);
+    grid-column: 3/4;
+    grid-row: 2/5;
+    /* grid-area: c; */
+    border-style:groove;
+    display: grid;
+    grid-template-rows: 50px 1fr;
+    overflow-wrap: break-word;
+    font-size: x-large;
+     line-height: 1.6;
+}
+
+.box-7 {
+    background-image: linear-gradient(to left, #dfe6e9, #7f8c8d);
+    grid-column: 1/2;
+    grid-row: 3/4;
+    /* grid-area: c; */
+    border-style:groove;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+
+}
+.box-8 {
+    background-image: linear-gradient(to left, #dfe6e9, #7f8c8d);
+    grid-column: 1/2;
+    grid-row: 4/6;
+    /* grid-area: c; */
+    border-style:groove;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+
+
+}
+.box-9 {
+    background-image: linear-gradient(to right, #dfe6e9, #7f8c8d);
+    grid-column: 3/4;
+    grid-row: 5/6;
+    /* grid-area: c; */
+    border-style:groove;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+
+}
+
+.button {
+    transition-duration: 0.4s;
+    border-radius: 5px;
+    background-color: #7f8c8d;
+    height: 60px;
+
+}
+
+.button:hover {
+    background-color: rgb(80, 102, 81);
+    color: white;
+}
+
+.search {
+    width: 100%;
+    border: 3px solid #7f8c8d;
+    padding: 5px;
+    height: 60px;
+    border-radius: 5px 5px 0 5px;
+    outline: none;
+    color: #9DBFAF;
+}
+
+
+
+.search:focus {
+    color: #00B4CC;
+}
+
+
+
+.box-6 {
+    overflow: hidden;
+    position: relative;
+   
+}
+
+.box-6 p {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    line-height: 50px;
+    text-align: center;
+
+    /* Starting position */
+    -moz-transform: translateY(100%);
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+
+    /* Apply animation to this element */
+    -moz-animation: scroll-up 20s linear infinite;
+    -webkit-animation: scroll-up 20s linear infinite;
+    animation: scroll-up 20s linear infinite;
+}
+
+/* Move it (define the animation) */
+
+@-moz-keyframes scroll-up {
+    0% {
+        -moz-transform: translateY(100%);
+    }
+
+    100% {
+        -moz-transform: translateY(-100%);
+    }
+}
+
+@-webkit-keyframes scroll-up {
+    0% {
+        -webkit-transform: translateY(100%);
+    }
+
+    100% {
+        -webkit-transform: translateY(-100%);
+    }
+}
+
+@keyframes scroll-up {
+    0% {
+        -moz-transform: translateY(100%);
+        /* Browser bug fix */
+        -webkit-transform: translateY(100%);
+        /* Browser bug fix */
+        transform: translateY(100%);
+    }
+
+    100% {
+        -moz-transform: translateY(-100%);
+        /* Browser bug fix */
+        -webkit-transform: translateY(-100%);
+        /* Browser bug fix */
+        transform: translateY(-100%);
+    }
+}
+
+
