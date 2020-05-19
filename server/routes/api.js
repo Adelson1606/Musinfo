@@ -8,7 +8,7 @@ const googleApiParams = {
   maxResults: 1,
   part: 'snippet',
   type: 'video',
-  key: 'AIzaSyAX3lF_ewqa6ni6lTHggtqW2WwDAhgcxro'
+  key: 'AIzaSyAl_etB-VBnzxNy68QCaOHTWis2m5oH-L0'
 }
 
 const getYandexParams = function (to) {
@@ -19,7 +19,7 @@ const getYandexParams = function (to) {
   }
 }
 
-async function apiTranslate(lyrics, to) {
+async function apiTranslate (lyrics, to) {
   const textForTranslate = encodeURIComponent(lyrics)
   const qs = new URLSearchParams(getYandexParams(to)).toString()
   const yandexreq = await request(`https://translate.yandex.net/api/v1.5/tr.json/translate?${qs}&text=${textForTranslate}`)
@@ -46,13 +46,23 @@ const toTitleCase = (phrase) => {
     .join(' ')
 }
 
-async function apiRequest(singer, song) {
+async function apiRequest (singer, song) {
   const q = singer + ' ' + song
   const qs = new URLSearchParams(googleApiParams).toString()
-  const youtubereq = await request(`https://www.googleapis.com/youtube/v3/search?q=${q}&` + qs)
+  // const youtubereq = await request(`https://www.googleapis.com/youtube/v3/search?q=${q}&` + qs)
+  //  const youtubereq = await request('https://www.youtube.com/watch?v=YQHsXMglC9A')
   const lyricreq = await request(`https://api.lyrics.ovh/v1/${singer}/${song}`)
   const deezerreq = await request(`https://api.deezer.com/search?q=${singer}`)
-  const youtubedata = youtubereq.data.items[0]
+  //const youtubedata = youtubereq.data.items[0]
+  const youtubedata = {
+    id: {
+      videoId: 'YQHsXMglC9A'
+    },
+    snippet: {
+      title: 'It is not ok youtube'
+    }
+  } 
+ 
   const lyricsString = lyricreq.data.lyrics
   const lyricsArrData = lyricsString.split(/\r?\n/)
   const deezerArrData = deezerreq.data //need for making recomendations
