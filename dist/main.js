@@ -67,11 +67,11 @@ $('#container').on('click', '#fr', function () {
 
 
 
-const handleFavorite = async function() {
+const handleFavorite = async function () {
   await App.saveSong()
 }
 
-$('#container').on('click','#favBut',function() {
+$('#container').on('click', '#favBut', function () {
   handleFavorite()
 })
 
