@@ -12,8 +12,9 @@ const googleApiParams = {
 }
 
 const yandexApiParams = {
-  lang: 'en-ru',
-  key: 'trnsl.1.1.20200518T065621Z.ed83ca0e1dd27529.8800a647be442891e8c11a0d364f2d809488a75d'
+  lang: 'ru', 
+  key: 'trnsl.1.1.20200518T065621Z.ed83ca0e1dd27529.8800a647be442891e8c11a0d364f2d809488a75d',
+  options: 1
 }
 
 async function apiTranslate (lyrics) {
@@ -60,16 +61,17 @@ router.get('/music/', async function (req, res) {
   // const singer=req.params.singer
   const singer = req.query.singer.toLowerCase()
   const song = req.query.song.toLowerCase()
+  const errMessage = "Sorry, we can't find it. Try another song"
   const data = await apiRequest(singer, song)
     .catch(function (err) {
       console.error(err)
     })
   if (!data) {
-    res.status(404).end()  
-  }
+    res.send(errMessage)
+  } 
   const songPreview = data.deezerArrData.data.find(s => s.title === toTitleCase(song))
 
-  let songInfo = {
+  const songInfo = {
 
     name: data.youtubedata.snippet.title,
     songName: song,
@@ -78,7 +80,7 @@ router.get('/music/', async function (req, res) {
     youTubeURL: data.youtubedata.id.videoId,
     youTubeTitle: data.youtubedata.snippet.title
   }
-  if(songPreview) songInfo['preview'] = songPreview.preview
+  if (songPreview) songInfo.preview = songPreview.preview
   const lenthOfall = data.deezerArrData.data.length
   const getRandom1 = Math.floor(Math.random() * lenthOfall)
   const getRandom2 = Math.floor(Math.random() * lenthOfall)
