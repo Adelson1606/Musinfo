@@ -27,7 +27,14 @@ class musicApp {
       dataType: 'json',
       data: JSON.stringify(this.songData)
     })
- }
+  }
+  
+  async getFavorites() {
+    const favSongsArr = await $.get('/songs')
+    if (favSongsArr) {
+      this.favorites = favSongsArr
+    }
+  }
 
 
 }

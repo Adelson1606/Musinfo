@@ -19,7 +19,7 @@ const getYandexParams = function (to) {
   }
 }
 
-async function apiTranslate (lyrics, to) {
+async function apiTranslate(lyrics, to) {
   const textForTranslate = encodeURIComponent(lyrics)
   const qs = new URLSearchParams(getYandexParams(to)).toString()
   const yandexreq = await request(`https://translate.yandex.net/api/v1.5/tr.json/translate?${qs}&text=${textForTranslate}`)
@@ -34,7 +34,7 @@ router.get('/translate', async function (req, res) {
   const lyricreq = await request(`https://api.lyrics.ovh/v1/${singer}/${song}`)
   const lyricsString = lyricreq.data.lyrics
   const data = await apiTranslate(lyricsString, to)
-  const lyricsArrData = data[0].split(/\r?\n/) 
+  const lyricsArrData = data[0].split(/\r?\n/)
   res.send(lyricsArrData)
 })
 
@@ -46,7 +46,7 @@ const toTitleCase = (phrase) => {
     .join(' ')
 }
 
-async function apiRequest (singer, song) {
+async function apiRequest(singer, song) {
   const q = singer + ' ' + song
   const qs = new URLSearchParams(googleApiParams).toString()
   const youtubereq = await request(`https://www.googleapis.com/youtube/v3/search?q=${q}&` + qs)
@@ -54,9 +54,13 @@ async function apiRequest (singer, song) {
   const deezerreq = await request(`https://api.deezer.com/search?q=${singer}`)
   const youtubedata = youtubereq.data.items[0]
   const lyricsString = lyricreq.data.lyrics
-  const lyricsArrData = lyricsString.split(/\r?\n/) 
+  const lyricsArrData = lyricsString.split(/\r?\n/)
   const deezerArrData = deezerreq.data //need for making recomendations
-  return { youtubedata, lyricsArrData, deezerArrData }
+  return {
+    youtubedata,
+    lyricsArrData,
+    deezerArrData
+  }
 }
 
 
@@ -72,30 +76,33 @@ router.get('/music/', async function (req, res) {
   if (!data) {
     res.send(errMessage)
   } else {
- 
-  const songPreview = data.deezerArrData.data.find(s => s.title === toTitleCase(song))
-  const songInfo = {
-    name: data.youtubedata.snippet.title,
-    songName: song,
-    singerName: singer,
-    lyricsArr: data.lyricsArrData,
-    youTubeURL: data.youtubedata.id.videoId,
-    youTubeTitle: data.youtubedata.snippet.title
-  }
-  if (songPreview) songInfo.preview = songPreview.preview
-  const lenthOfall = data.deezerArrData.data.length
-  
-  const getRandom1 = Math.floor(Math.random() * lenthOfall)
-  const getRandom2 = Math.floor(Math.random() * lenthOfall)
-  const getRandom3 = Math.floor(Math.random() * lenthOfall)
 
-  const first = data.deezerArrData.data[getRandom1].title
-  const second = data.deezerArrData.data[getRandom2].title
-  const third = data.deezerArrData.data[getRandom3].title
-  const recSongsArr = []
-  recSongsArr.push(first, second, third)
-  res.send({ songInfo, recSongsArr })
-}
+    const songPreview = data.deezerArrData.data.find(s => s.title === toTitleCase(song))
+    const songInfo = {
+      name: data.youtubedata.snippet.title,
+      songName: song,
+      singerName: singer,
+      lyricsArr: data.lyricsArrData,
+      youTubeURL: data.youtubedata.id.videoId,
+      youTubeTitle: data.youtubedata.snippet.title
+    }
+    if (songPreview) songInfo.preview = songPreview.preview
+    const lenthOfall = data.deezerArrData.data.length
+
+    const getRandom1 = Math.floor(Math.random() * lenthOfall)
+    const getRandom2 = Math.floor(Math.random() * lenthOfall)
+    const getRandom3 = Math.floor(Math.random() * lenthOfall)
+
+    const first = data.deezerArrData.data[getRandom1].title
+    const second = data.deezerArrData.data[getRandom2].title
+    const third = data.deezerArrData.data[getRandom3].title
+    const recSongsArr = []
+    recSongsArr.push(first, second, third)
+    res.send({
+      songInfo,
+      recSongsArr
+    })
+  }
 })
 
 
@@ -104,35 +111,46 @@ router.get('/songs', async function (req, res) {
   res.send(songs)
 })
 
-router.post('/music', function (req, res) {
-  const newSong =req.body
+router.post('/music', async function (req, res) {
+  const newSong = req.body
 
-  const s = new Music(
-    {
-      name: newSong.songInfo.youTubeTitle,
-      songName: newSong.songInfo.songName,
-      singerName: newSong.songInfo.singerName,
-      lyricsArr: newSong.songInfo.lyricsArr,
-      youTubeURL: newSong.songInfo.youTubeURL,
-      youTubeTitle: newSong.songInfo.youTubeTitle,
-      preview: newSong.songInfo.preview
-    }
-  )
-  s.save()
-    .then(function (newSong) {
-      res.send(newSong)
-    })
+  const s = new Music({
+    name: newSong.songInfo.youTubeTitle,
+    songName: newSong.songInfo.songName,
+    singerName: newSong.songInfo.singerName,
+    lyricsArr: newSong.songInfo.lyricsArr,
+    youTubeURL: newSong.songInfo.youTubeURL,
+    youTubeTitle: newSong.songInfo.youTubeTitle,
+    preview: newSong.songInfo.preview
+  })
+  const isExist = await Music.find({
+    name: s.name
+  })
+  if (isExist.length === 0) {
+    s.save()
+    res.send(newSong)
+  } else {
+    res.end()
+  }
+
+
 })
 
 router.delete('/music/', async function (req, res) {
   const song = req.query.song
   const singer = req.query.singer
 
-  Music.deleteOne({ $and: [{ songName: song }, { singerName: singer }] }, () => {
+  Music.deleteOne({
+    $and: [{
+      songName: song
+    }, {
+      singerName: singer
+    }]
+  }, () => {
     console.log(song, '-', singer, "remover from data")
   }).then(function () {
     res.send("apocalypse!")
   })
-}) 
+})
 
 module.exports = router
