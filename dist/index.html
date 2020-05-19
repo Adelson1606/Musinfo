@@ -21,13 +21,14 @@
     <script id="song-template" type="text/x-handlebars-template">
    <div id="songInfo">
     <div>
+        <div classs='title'>{{youTubeTitle}}</div>
     <iframe src="http://www.youtube.com/embed/{{songInfo.youTubeURL}}?autoplay=1&loop=1"
     width="600" height="400" frameborder="0" allowfullscreen></iframe>
     </div>
     <div id="rightSideContainer">
     <div id="lyrics">
         <h1>Lyrics</h1>
-        {{#each songInfo.lyricsArr}}
+        {{#each lyricsArr}}
         <p>{{this}}</p>
         {{/each}}
     </div>
@@ -48,6 +49,14 @@
 
     <script class="error" type="text/x-handlebars-template">
     <div>{{eroor}}</div>
+   </script>
+
+    <script class="recomendations" type="text/x-handlebars-template">
+        <div class='rec-container'>
+    {{#each recSongsArr}}
+    <div class='recSong'>{{this}}</div>
+    {{/each}}
+</div>
    </script>
 
     <script src='jquery/dist/jquery.js'></script>

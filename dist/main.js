@@ -2,6 +2,7 @@ const App = new musicApp()
 const renderer = new Renderer()
 const render = renderer.renderData
 const renderErr = renderer.renderError
+const renderRecomendations = renderer.renderRecomendations
 
 
 const handleSearch = async function (songName, singerName) {
@@ -9,7 +10,9 @@ const handleSearch = async function (songName, singerName) {
   if (App.songData === "Sorry, we can't find it. Try another song") {
     renderErr(App.songData)
   } else {
-    render(App.songData) 
+    render(App.songData.songInfo) 
+    renderRecomendations(App.songData.recSongsArr)
+
   }
 }
 
@@ -61,6 +64,14 @@ $('#container').on('click', '#fr', function () {
   handleTraanslate(songName, singerName, 'fr')
 })
 
+
+
+$('#container').on('click', '.recSong', function () {
+  const songName = $(this).text()
+  const singerName = $('#artistIn').val()
+  handleSearch(songName, singerName)
+})
+  
 
 
 document.getElementById('artistIn').addEventListener("keyup", function (event) {

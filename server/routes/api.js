@@ -8,7 +8,7 @@ const googleApiParams = {
   maxResults: 1,
   part: 'snippet',
   type: 'video',
-  key: 'AIzaSyDHn1socGyIKPmXU5VvisDMbZ9Sl4U3x70'
+  key: 'AIzaSyBooKgWAM65YDK3FHLoe5Fu_FMzwzDtdgU'
 }
 
 const getYandexParams = function (to) {
@@ -107,13 +107,13 @@ router.post('/music', function (req, res) {
   const newSong = req.body
   const s = new Music(
     {
-      name: newSong.youTubeTitle,
-      songName: newSong.songName,
-      singerName: newSong.singerName,
-      lyricsArr: newSong.lyricsArr,
-      youTubeURL: newSong.youTubeURL,
-      youTubeTitle: newSong.youTubeTitle,
-      preview: newSong.preview
+      name: newSong.songInfo.youTubeTitle,
+      songName: newSong.songInfo.songName,
+      singerName: newSong.songInfo.singerName,
+      lyricsArr: newSong.songInfo.lyricsArr,
+      youTubeURL: newSong.songInfo.youTubeURL,
+      youTubeTitle: newSong.songInfo.youTubeTitle,
+      preview: newSong.songInfo.preview
     }
   )
   s.save()
