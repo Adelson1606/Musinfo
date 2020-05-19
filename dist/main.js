@@ -2,6 +2,7 @@ const App = new musicApp()
 const renderer = new Renderer()
 const render = renderer.renderData
 const renderErr = renderer.renderError
+const renderRecomendations = renderer.renderRecomendations
 
 
 const handleSearch = async function (songName, singerName) {
@@ -10,6 +11,7 @@ const handleSearch = async function (songName, singerName) {
     renderErr(App.songData)
   } else {
     render(App.songData) 
+    renderRecomendations(App.songData.recSongsArr)
   }
 }
 
@@ -69,6 +71,12 @@ const handleFavorite = async function() {
 
 $('#container').on('click','#favBut',function() {
   handleFavorite()
+})
+
+$('#container').on('click', '.recSong', function () {
+  const songName = $(this).text()
+  const singerName = $('#artistIn').val()
+  handleSearch(songName, singerName)
 })
 
 

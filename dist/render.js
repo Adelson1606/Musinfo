@@ -3,7 +3,6 @@ class Renderer {
     const source = $('#song-template').html()
     const template = Handlebars.compile(source)
     $('#container').empty()
-    console.log(_data)
     const newHTML = template(_data)
     $('#container').append(newHTML)
   }
@@ -21,6 +20,13 @@ class Renderer {
     const source = $('.error').html()
     const template = Handlebars.compile(source)
     const newHTML = template({ eroor })
+    $('#container').append(newHTML)
+  }
+
+  renderRecomendations (recSongsArr) {
+    const source = $('.recomendations').html()
+    const template = Handlebars.compile(source)
+    const newHTML = template({ recSongsArr })
     $('#container').append(newHTML)
   }
 }

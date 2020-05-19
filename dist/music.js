@@ -18,7 +18,13 @@ class musicApp {
   }
 
   async saveSong() {
-    await $.post('/music',this.songData)
+    await $.ajax({
+      type: "POST",
+      url: '/music',
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json',
+      data: JSON.stringify(this.songData)
+    })
  }
 
 }
