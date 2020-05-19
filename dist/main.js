@@ -8,8 +8,8 @@ const handleSearch  = async function(songName,singerName) {
     render(App.songData)
 }
 
-const handleTraanslate  = async function(songName,singerName) {
-    await App.getTranslated(songName,singerName)
+const handleTraanslate  = async function(songName,singerName,to) {
+    await App.getTranslated(songName,singerName,to)
     renderer.insertTranslate(App.translatedText)
 }
 
@@ -21,16 +21,37 @@ $('#button').on('click',function() {
 })
 
 
-$('#container').on('click','#translateBut',function() {
+$('#container').on('click','#he',function() {
     const songName = $('#songIn').val()
     const singerName = $('#artistIn').val()
-    handleTraanslate(songName,singerName)
+    handleTraanslate(songName,singerName,'he')
+})
+
+$('#container').on('click','#ru',function() {
+    const songName = $('#songIn').val()
+    const singerName = $('#artistIn').val()
+    handleTraanslate(songName,singerName,'ru')
+})
+
+$('#container').on('click','#ar',function() {
+    const songName = $('#songIn').val()
+    const singerName = $('#artistIn').val()
+    handleTraanslate(songName,singerName,'ar')
 })
 
 
-$('#container').on('click','#removeTranslateBut',function() {
-    render(App.songData)
+$('#container').on('click','#es',function() {
+    const songName = $('#songIn').val()
+    const singerName = $('#artistIn').val()
+    handleTraanslate(songName,singerName,'es')
 })
+
+$('#container').on('click','#fr',function() {
+    const songName = $('#songIn').val()
+    const singerName = $('#artistIn').val()
+    handleTraanslate(songName,singerName,'fr')
+})
+
 
 
 

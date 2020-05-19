@@ -1,33 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MUSICINFO</title>
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.css" >
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div id="header">
-    <input id="songIn" class = 'input' type="text" placeholder="Song name">
-    <input id ="artistIn" class = 'input' type="text" placeholder="Artist name">
-    <button id = 'button' type="submit"><i class="fa fa-search"></i></button>
-   </div><br><br><br>
+        <input id="songIn" class='input' type="text" placeholder="Song name">
+        <input id="artistIn" class='input' type="text" placeholder="Artist name">
+        <button id='button' type="submit"><i class="fa fa-search"></i></button>
+    </div><br><br><br>
 
-   <div id="container"></div>
+    <div id="container"></div>
 
-   <script id="song-template" type="text/x-handlebars-template">
+    <script id="song-template" type="text/x-handlebars-template">
    <div id="songInfo">
     <div>
     <iframe src="http://www.youtube.com/embed/{{songInfo.youTubeURL}}?autoplay=1&loop=1"
     width="600" height="400" frameborder="0" allowfullscreen></iframe>
     </div>
+    <div id="rightSideContainer">
     <div id="lyrics">
         <h1>Lyrics</h1>
         {{#each songInfo.lyricsArr}}
         <p>{{this}}</p>
         {{/each}}
-        <button id ='translateBut'>Translate</button>
+    </div>
+    <br><br>
+        <div id='translater'>
+            <i class="fa fa-globe"></i>
+            <label class="trans" ><strong>Translate to</strong></label>
+            <img class="flag" id="he" src="https://image.flaticon.com/icons/svg/197/197577.svg">
+            <img class="flag" id="ru" src="https://image.flaticon.com/icons/svg/197/197408.svg">
+            <img class="flag" id="ar" src="https://image.flaticon.com/icons/svg/197/197558.svg">
+            <img class="flag" id="es" src="https://image.flaticon.com/icons/svg/197/197593.svg">
+            <img class="flag" id="fr" src="https://image.flaticon.com/icons/svg/197/197560.svg">
+        </div>
     </div>
    </div>
    </script>
@@ -35,8 +48,9 @@
 
     <script src='jquery/dist/jquery.js'></script>
     <script src='handlebars/dist/handlebars.js'></script>
-    <script src= 'music.js'></script>
+    <script src='music.js'></script>
     <script src='render.js'></script>
     <script src='main.js'></script>
 </body>
+
 </html>
