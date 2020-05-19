@@ -114,7 +114,8 @@ router.post('/music', function (req, res) {
       singerName: newSong.songInfo.singerName,
       lyricsArr: newSong.songInfo.lyricsArr,
       youTubeURL: newSong.songInfo.youTubeURL,
-      youTubeTitle: newSong.songInfo.youTubeTitle
+      youTubeTitle: newSong.songInfo.youTubeTitle,
+      preview: newSong.songInfo.preview
     }
   )
   s.save()
