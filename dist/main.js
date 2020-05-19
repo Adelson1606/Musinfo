@@ -10,8 +10,9 @@ const handleSearch = async function (songName, singerName) {
   if (App.songData === "Sorry, we can't find it. Try another song") {
     renderErr(App.songData)
   } else {
-    render(App.songData.songInfo) 
+    render(App.songData) 
     renderRecomendations(App.songData.recSongsArr)
+
 
   }
 }
@@ -73,6 +74,12 @@ const handleFavorite = async function () {
 
 $('#container').on('click', '#favBut', function () {
   handleFavorite()
+})
+
+$('#container').on('click', '.recSong', function () {
+  const songName = $(this).text()
+  const singerName = $('#artistIn').val()
+  handleSearch(songName, singerName)
 })
 
 

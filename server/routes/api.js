@@ -8,7 +8,7 @@ const googleApiParams = {
   maxResults: 1,
   part: 'snippet',
   type: 'video',
-  key: 'AIzaSyBooKgWAM65YDK3FHLoe5Fu_FMzwzDtdgU'
+  key: 'AIzaSyAX3lF_ewqa6ni6lTHggtqW2WwDAhgcxro'
 }
 
 const getYandexParams = function (to) {
@@ -105,8 +105,8 @@ router.get('/songs', async function (req, res) {
 })
 
 router.post('/music', function (req, res) {
-  const newSong = req.body
-  console.log(newSong)
+  const newSong =req.body
+
   const s = new Music(
     {
       name: newSong.songInfo.youTubeTitle,

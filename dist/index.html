@@ -20,8 +20,7 @@
 
     <script id="song-template" type="text/x-handlebars-template">
    <div id="songInfo">
-    <div>
-        <div classs='title'>{{youTubeTitle}}</div>
+    <div id="clipContainer">
     <iframe src="http://www.youtube.com/embed/{{songInfo.youTubeURL}}?autoplay=1&loop=1"
     width="600" height="400" frameborder="0" allowfullscreen></iframe><br><br><br>
     <div id="favoriteBar">
@@ -55,13 +54,19 @@
     <div>{{eroor}}</div>
    </script>
 
+
+
+    
     <script class="recomendations" type="text/x-handlebars-template">
-        <div class='rec-container'>
+    <br><br>
+    <div class='rec-container'>
     {{#each recSongsArr}}
     <div class='recSong'>{{this}}</div>
     {{/each}}
-</div>
-   </script>
+    </div>
+    </script>
+
+
 
     <script src='jquery/dist/jquery.js'></script>
     <script src='handlebars/dist/handlebars.js'></script>
