@@ -66,6 +66,15 @@
     </div>
     </script>
 
+    <script class="favorites" type="text/x-handlebars-template">
+    <br><br>
+    <div class='fav-container'>
+    {{#each favSongsArr}}
+    <div class='favSong'>{{singerName}}-{{songName}}</div>
+    {{/each}}
+    </div>
+    </script>
+
 
 
     <script src='jquery/dist/jquery.js'></script>

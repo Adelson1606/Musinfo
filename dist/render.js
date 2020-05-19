@@ -29,4 +29,12 @@ class Renderer {
     const newHTML = template({ recSongsArr })
     $('#container').append(newHTML)
   }
+
+  renderFavorites(favSongsArr) {
+     console.log(favSongsArr)
+     const source = $('.favorites').html()
+     const template = Handlebars.compile(source)
+     const newHTML = template({favSongsArr})
+     $('#container').append(newHTML)
+   }
 }
