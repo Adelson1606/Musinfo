@@ -17,7 +17,9 @@ class musicApp {
     }
   }
 
+
   async saveSong() {
+
     await $.ajax({
       type: "POST",
       url: '/music',
@@ -26,5 +28,6 @@ class musicApp {
       data: JSON.stringify(this.songData)
     })
  }
+
 
 }

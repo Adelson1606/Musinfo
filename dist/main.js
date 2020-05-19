@@ -12,6 +12,8 @@ const handleSearch = async function (songName, singerName) {
   } else {
     render(App.songData) 
     renderRecomendations(App.songData.recSongsArr)
+
+
   }
 }
 
@@ -65,11 +67,12 @@ $('#container').on('click', '#fr', function () {
 
 
 
-const handleFavorite = async function() {
+
+const handleFavorite = async function () {
   await App.saveSong()
 }
 
-$('#container').on('click','#favBut',function() {
+$('#container').on('click', '#favBut', function () {
   handleFavorite()
 })
 
@@ -78,6 +81,14 @@ $('#container').on('click', '.recSong', function () {
   const singerName = $('#artistIn').val()
   handleSearch(songName, singerName)
 })
+
+
+$('#container').on('click', '.recSong', function () {
+  const songName = $(this).text()
+  const singerName = $('#artistIn').val()
+  handleSearch(songName, singerName)
+})
+  
 
 
 
