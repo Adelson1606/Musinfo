@@ -1,0 +1,49 @@
+  
+body {
+    background-image: url('backpic.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+    width: 100%;
+  }
+
+.input {
+    font-weight: bold;
+    display: inline-block;
+    background: transparent;
+    color: black;
+    border: none;
+    border-bottom: 1px solid black;
+    width: 45%;
+    height: 45px;
+}
+
+#button {
+    background: transparent;
+}
+
+::placeholder { 
+    color: black;
+    opacity: 1; 
+}
+
+#songInfo {
+    display: grid;
+    grid-gap: 50px;
+    grid-template-columns: repeat(2,1fr);
+}
+
+#lyrics {
+    width: 600px;
+    height: 400px;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+}
+
+#lyrics::-webkit-scrollbar {
+    display: none;
+}
+
+
