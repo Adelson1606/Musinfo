@@ -105,7 +105,7 @@ router.get('/songs', async function (req, res) {
 })
 
 router.post('/music', function (req, res) {
-  const newSong =req.body
+  const newSong = req.body
   console.log(newSong)
   const s = new Music(
     {
