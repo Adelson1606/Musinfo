@@ -1,11 +1,16 @@
 const App = new musicApp()
 const renderer = new Renderer()
 const render = renderer.renderData
+const renderErr = renderer.renderError
 
 
-const handleSearch  = async function(songName,singerName) {
-    await App.getSongData(songName,singerName)
-    render(App.songData)
+const handleSearch = async function (songName, singerName) {
+  await App.getSongData(songName, singerName)
+  if (App.songData === "Sorry, we can't find it. Try another song") {
+    renderErr(App.songData)
+  } else {
+    render(App.songData) 
+  }
 }
 
 const handleTraanslate  = async function(songName,singerName,to) {
@@ -14,11 +19,14 @@ const handleTraanslate  = async function(songName,singerName,to) {
 }
 
 
-$('#button').on('click',function() {
-    const songName = $('#songIn').val()
-    const singerName = $('#artistIn').val()
-    if(songName && singerName) handleSearch(songName,singerName)
+$('#button').on('click', function () {
+  const songName = $('#songIn').val()
+  const singerName = $('#artistIn').val()
+  if (songName && singerName) {
+    handleSearch(songName, singerName) 
+  }
 })
+
 
 
 $('#container').on('click','#he',function() {
@@ -32,6 +40,7 @@ $('#container').on('click','#ru',function() {
     const singerName = $('#artistIn').val()
     handleTraanslate(songName,singerName,'ru')
 })
+
 
 $('#container').on('click','#ar',function() {
     const songName = $('#songIn').val()
@@ -54,9 +63,6 @@ $('#container').on('click','#fr',function() {
 
 
 
-
-
-
 document.getElementById('artistIn').addEventListener("keyup", function(event) {
     // Number 13 is the "Enter" key on the keyboard
     if (event.keyCode === 13) {
@@ -66,3 +72,4 @@ document.getElementById('artistIn').addEventListener("keyup", function(event) {
       document.getElementById('button').click();
     }
   });
+
