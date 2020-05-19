@@ -20,6 +20,9 @@
   "dependencies": {
     "axios": "^0.19.2",
     "express": "^4.17.1",
+    "font-awesome": "^4.7.0",
+    "handlebars": "^4.7.6",
+    "jquery": "^3.5.1",
     "mongoose": "^5.9.14"
   }
 }

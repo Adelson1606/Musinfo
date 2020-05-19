@@ -68,15 +68,17 @@ router.get('/music/', async function (req, res) {
     res.status(404).end()  
   }
   const songPreview = data.deezerArrData.data.find(s => s.title === toTitleCase(song))
-  const songInfo = {
+
+  let songInfo = {
+
     name: data.youtubedata.snippet.title,
     songName: song,
     singerName: singer,
     lyricsArr: data.lyricsArrData,
     youTubeURL: data.youtubedata.id.videoId,
-    youTubeTitle: data.youtubedata.snippet.title,
-    preview: songPreview.preview
+    youTubeTitle: data.youtubedata.snippet.title
   }
+  if(songPreview) songInfo['preview'] = songPreview.preview
   const lenthOfall = data.deezerArrData.data.length
   const getRandom1 = Math.floor(Math.random() * lenthOfall)
   const getRandom2 = Math.floor(Math.random() * lenthOfall)
