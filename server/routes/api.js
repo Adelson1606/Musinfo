@@ -11,15 +11,17 @@ const googleApiParams = {
   key: 'AIzaSyDHn1socGyIKPmXU5VvisDMbZ9Sl4U3x70'
 }
 
-const yandexApiParams = {
-  lang: 'ru', 
-  key: 'trnsl.1.1.20200518T065621Z.ed83ca0e1dd27529.8800a647be442891e8c11a0d364f2d809488a75d',
-  options: 1
+const getYandexParams = function(to) {
+  return {
+    lang: `${to}`,
+    options: 1 ,
+    key: 'trnsl.1.1.20200518T065621Z.ed83ca0e1dd27529.8800a647be442891e8c11a0d364f2d809488a75d'
+  }
 }
 
-async function apiTranslate (lyrics) {
+async function apiTranslate (lyrics,to) {
   const textForTranslate = encodeURIComponent(lyrics)
-  const qs = new URLSearchParams(yandexApiParams).toString()
+  const qs = new URLSearchParams(getYandexParams(to)).toString()
   const yandexreq = await request(`https://translate.yandex.net/api/v1.5/tr.json/translate?${qs}&text=${textForTranslate}`)
   const translatedText = yandexreq.data.text
   return (translatedText)
@@ -28,9 +30,10 @@ async function apiTranslate (lyrics) {
 router.get('/translate', async function (req, res) {
   const singer = req.query.singer.toLowerCase()
   const song = req.query.song.toLowerCase()
+  const to = req.query.to.toLowerCase()
   const lyricreq = await request(`https://api.lyrics.ovh/v1/${singer}/${song}`)
   const lyricsString = lyricreq.data.lyrics
-  const data = await apiTranslate(lyricsString)
+  const data = await apiTranslate(lyricsString,to)
   const lyricsArrData = data[0].split(/\r?\n/) 
   res.send(lyricsArrData)
 })
@@ -73,6 +76,9 @@ router.get('/music/', async function (req, res) {
 
   const songInfo = {
 
+  if(data) {
+   songPreview = data.deezerArrData.data.find(s => s.title === toTitleCase(song))
+   let songInfo = {
     name: data.youtubedata.snippet.title,
     songName: song,
     singerName: singer,
@@ -82,6 +88,7 @@ router.get('/music/', async function (req, res) {
   }
   if (songPreview) songInfo.preview = songPreview.preview
   const lenthOfall = data.deezerArrData.data.length
+  
   const getRandom1 = Math.floor(Math.random() * lenthOfall)
   const getRandom2 = Math.floor(Math.random() * lenthOfall)
   const getRandom3 = Math.floor(Math.random() * lenthOfall)
@@ -92,6 +99,10 @@ router.get('/music/', async function (req, res) {
   const recSongsArr = []
   recSongsArr.push(first, second, third)
   res.send({ songInfo, recSongsArr })
+  }  else {
+    res.end()
+  }
+ 
 })
 
 

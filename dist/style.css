@@ -36,6 +36,7 @@ body {
 }
 
 #lyrics {
+    position: relative;
     width: 600px;
     height: 400px;
     overflow-y: scroll;
@@ -45,5 +46,22 @@ body {
 #lyrics::-webkit-scrollbar {
     display: none;
 }
+
+.flag {
+    height: 20px;
+    width: 20px;
+    display: -moz-inline-box;
+    padding-left: 10px;
+}
+
+.fa fa-globe{
+    height: 20px;
+    width: 20px;
+    display: -moz-inline-box;
+}
+
+
+
+
 
 

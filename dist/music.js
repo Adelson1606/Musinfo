@@ -11,14 +11,11 @@ class musicApp {
       this.songData = songInfo     
     }
 
-  }
-
-  async getTranslated (song, singer) {
-    const text = await $.get(`/translate/?singer=${singer}&song=${song}`) 
-    if (text) {
-      this.translatedText = text
+   async getTranslated(song,singer,to) {
+        const text = await $.get(`/translate/?singer=${singer}&song=${song}&to=${to}`) 
+        if (text) {
+              this.translatedText = text
+         }
     }
-  }
-
 
 }
