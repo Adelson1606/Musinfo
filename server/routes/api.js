@@ -71,7 +71,7 @@ router.get('/music/', async function (req, res) {
     })
   if (!data) {
     res.send(errMessage)
-  } 
+  } else {
  
   const songPreview = data.deezerArrData.data.find(s => s.title === toTitleCase(song))
   const songInfo = {
@@ -95,6 +95,7 @@ router.get('/music/', async function (req, res) {
   const recSongsArr = []
   recSongsArr.push(first, second, third)
   res.send({ songInfo, recSongsArr })
+}
 })
 
 
@@ -104,7 +105,8 @@ router.get('/songs', async function (req, res) {
 })
 
 router.post('/music', function (req, res) {
-  const newSong = req.body
+  const newSong =req.body
+  console.log(newSong)
   const s = new Music(
     {
       name: newSong.songInfo.youTubeTitle,

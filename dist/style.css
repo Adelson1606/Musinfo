@@ -60,6 +60,31 @@ body {
     display: -moz-inline-box;
 }
 
+.flag:active {
+    box-shadow: 0 1px #666;
+    transform: translateY(1px);
+  }
+
+
+#favBut{
+      color: green;
+
+  }
+
+#favBut:active {
+    box-shadow: 0 1px #666;
+    transform: translateY(1px);
+  }
+
+  #clipContainer {
+      position: relative;
+  }
+
+#favoriteBar {
+    position: relative;
+    margin-left: 150px;
+}
+
 
 
 .rec-container{

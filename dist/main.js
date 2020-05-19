@@ -66,12 +66,23 @@ $('#container').on('click', '#fr', function () {
 
 
 
+
+const handleFavorite = async function() {
+  await App.saveSong()
+}
+
+$('#container').on('click','#favBut',function() {
+  handleFavorite()
+})
+
+
 $('#container').on('click', '.recSong', function () {
   const songName = $(this).text()
   const singerName = $('#artistIn').val()
   handleSearch(songName, singerName)
 })
   
+
 
 
 document.getElementById('artistIn').addEventListener("keyup", function (event) {
