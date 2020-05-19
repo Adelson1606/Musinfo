@@ -68,7 +68,9 @@ router.get('/music/', async function (req, res) {
     res.status(404).end()  
   }
   const songPreview = data.deezerArrData.data.find(s => s.title === toTitleCase(song))
+
   let songInfo = {
+
     name: data.youtubedata.snippet.title,
     songName: song,
     singerName: singer,
