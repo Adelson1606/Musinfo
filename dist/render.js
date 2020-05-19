@@ -3,6 +3,7 @@ class Renderer {
     const source = $('#song-template').html()
     const template = Handlebars.compile(source)
     $('#container').empty()
+    console.log(_data)
     const newHTML = template(_data)
     $('#container').append(newHTML)
   }
