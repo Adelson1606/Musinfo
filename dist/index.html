@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MUSICINFO</title>
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.css" >
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div id="header">
-    <input id="songIn" class = 'input' type="text" placeholder="Song name">
-    <input id ="artistIn" class = 'input' type="text" placeholder="Artist name">
-    <button id = 'button' type="submit"><i class="fa fa-search"></i></button>
-   </div><br><br><br>
+        <input id="songIn" class='input' type="text" placeholder="Song name">
+        <input id="artistIn" class='input' type="text" placeholder="Artist name">
+        <button id='button' type="submit"><i class="fa fa-search"></i></button>
+    </div><br><br><br>
 
-   <div id="container"></div>
+    <div id="container"></div>
 
-   <script id="song-template" type="text/x-handlebars-template">
+    <script id="song-template" type="text/x-handlebars-template">
    <div id="songInfo">
     <div>
     <iframe src="http://www.youtube.com/embed/{{songInfo.youTubeURL}}?autoplay=1&loop=1"
@@ -30,13 +32,18 @@
         <button id ='translateBut'>Translate</button>
     </div>
    </div>
-   </script>
+  
+</script>
 
+    <script class="error" type="text/x-handlebars-template">
+    <div>{{eroor}}</div>
+   </script>
 
     <script src='jquery/dist/jquery.js'></script>
     <script src='handlebars/dist/handlebars.js'></script>
-    <script src= 'music.js'></script>
+    <script src='music.js'></script>
     <script src='render.js'></script>
     <script src='main.js'></script>
 </body>
+
 </html>
