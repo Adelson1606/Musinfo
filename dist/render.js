@@ -14,7 +14,6 @@ class Renderer {
     for (const line of text) {
       newHTML += `<p>${line}</p>`
     }
-    newHTML += "<button id ='removeTranslateBut'>Show Original Lyrics</button>"
     $('#lyrics').append(newHTML)
   }
 

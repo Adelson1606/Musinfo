@@ -63,6 +63,16 @@ $('#container').on('click', '#fr', function () {
 
 
 
+const handleFavorite = async function() {
+  await App.saveSong()
+}
+
+$('#container').on('click','#favBut',function() {
+  handleFavorite()
+})
+
+
+
 document.getElementById('artistIn').addEventListener("keyup", function (event) {
   // Number 13 is the "Enter" key on the keyboard
   if (event.keyCode === 13) {
