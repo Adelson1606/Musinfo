@@ -99,10 +99,12 @@ body {
 
 
 .rec-container{
+    align-self: center;
+    justify-self: center;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     /* background-color: blue; */
-    height: 100px;
+    height: 150px;
     font-size: x-large;
     justify-items: center;
     align-items: center;
