@@ -131,6 +131,17 @@ body {
     /* border: black solid 1px; */
 }
 
+.fa-minus-circle:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
+.fa-minus-circle {
+  color: darkred;
+}
+
+
 
 
 .rec-container{
@@ -242,7 +253,7 @@ div#container {
     ;
 }
 
-.fav-container {
+.favoriteLine {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     font-size: x-large;

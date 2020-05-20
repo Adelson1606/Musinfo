@@ -19,14 +19,23 @@ class musicApp {
 
 
   async saveSong() {
-
-    await $.ajax({
+    $.ajax({
       type: "POST",
       url: '/music',
       contentType: 'application/json; charset=utf-8',
       dataType: 'json',
       data: JSON.stringify(this.songData)
     })
+  }
+
+
+  async deleteSong(singer,song) {
+    $.ajax({
+      url: `/music/?singer=${singer}&song=${song}`,
+      type: 'DELETE',
+      success: function (result) {}
+  });
+
   }
   
   async getFavorites() {

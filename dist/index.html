@@ -79,15 +79,19 @@
 
     <script class="favorites" type="text/x-handlebars-template">
     <br><br>
+    <div class="favoritesMainContainer">
     <h1><strong>Favorite songs playlist</strong></h1>
     <div class='fav-container'>
     {{#each favSongsArr}}
+    <div class="favoriteLine">
     <div class='favSong'>{{singerName}}-{{songName}}</div>
     <audio controls>
         <source src={{preview}} type="audio/mpeg">
     </audio>
-    <div class='remove'>REMOVE FROM FAV</div>
+    <div class='remove'><i class="fa fa-minus-circle"></i></div>
+    </div>
     {{/each}}
+    </div>
     </div>
     </script>
 
