@@ -1,4 +1,3 @@
-  
 body {
     background-image: url('backpic.jpg');
     background-repeat: no-repeat;
@@ -321,3 +320,15 @@ div#container {
 }
 
 
+.favoritesMainContainer{
+  background-color: #eadfb161;
+}
+.hiphopMainContainer{
+  background-color: #eadfb161;
+}
+.rockMainContainer{
+  background-color: #eadfb161;
+}
+.popMainContainer{
+  background-color: #eadfb161;
+}
