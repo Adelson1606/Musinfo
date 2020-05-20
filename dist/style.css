@@ -4,7 +4,8 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'fantasy';
+    color: #472b21;
     height: 100%;
     width: 100%;
   }
@@ -75,7 +76,7 @@ body {
     height: 400px;
     overflow-y: scroll;
     -ms-overflow-style: none;
-    background-color: #eadfb1;
+    background-color: #eadfb161;
 }
 
 #lyrics::-webkit-scrollbar {
@@ -249,7 +250,7 @@ body {
 
 
 div#container {
-    background-color: #eadfb1;
+    background-color: #eadfb161;
     ;
 }
 
