@@ -1,18 +1,50 @@
-  
 body {
     background-image: url('backpic.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'fantasy';
+    color: #472b21;
     height: 100%;
     width: 100%;
   }
 
-  h1{
+h1{
     color: #2e6260;
     font-family: fantasy;
-  }
+}
+
+.otherRec{
+  color: #2e6260;
+  font-family: fantasy;
+  font-size: xx-large;
+}
+
+.otherRec:hover{
+  color: #cb810d;    
+  cursor: pointer;
+  transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+}
+
+
+strong{
+    color: #2e6260;
+    font-family: fantasy;
+    font-style: oblique;
+    font-size: 27px;
+}
+
+strong:hover{
+  color: #cb810d;    
+  cursor: pointer;
+  transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+}
 
 #container{
     margin-top: 17%;
@@ -37,15 +69,12 @@ body {
     border: 0px solid #000;
     font-size: 70px;
     color: #2e6260;
-    
     transition: all 0.4s;
     -moz-transition: all 0.4s;
     -webkit-transition: all 0.4s;
     -o-transition: all 0.4s;
 }
 
-
-  
 
 #button:hover{
     color: #cb810d;    
@@ -55,8 +84,6 @@ body {
     -webkit-transition: all 0.4s;
     -o-transition: all 0.4s;
 }
-
-
 
 ::placeholder { 
     color: black;
@@ -75,7 +102,7 @@ body {
     height: 400px;
     overflow-y: scroll;
     -ms-overflow-style: none;
-    background-color: #eadfb1;
+    background-color: #eadfb161;
 }
 
 #lyrics::-webkit-scrollbar {
@@ -101,13 +128,9 @@ body {
   }
 
 
-#favBut{
-      color: green;
-
-  }
 
 #favBut:active {
-    box-shadow: 0 1px #666;
+    box-shadow: 0 1px darkred;
     transform: translateY(1px);
   }
 
@@ -115,12 +138,16 @@ body {
       position: relative;
   }
 
-#favoriteBar {
+ /* #favoriteBar {
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+   grid-template-rows: 1fr 1fr 1fr; 
   position: relative;
   margin-left: 40px;
-}
+  font-family: 'fantasy';
+  color: #472b21;
+}  */
+
+
 
 .rec-container{
     display: grid;
@@ -161,6 +188,7 @@ body {
     font-size: x-large;
     justify-items: center;
     align-items: center;
+        font-family: fantasy;
     /* border: black solid 1px; */
 }
 
@@ -173,13 +201,14 @@ body {
     margin-top: 10px;
     width: 30%;
     float: left;
+    font-family: fantasy;
   }
   
   .form__field {
-    font-family: inherit;
+    font-family: fantasy;
     width: 80%;
     border: 0;
-    border-bottom: 2px solid #2e6260;
+    border-bottom: 2px solid #75927f;;
     outline: 0;
     font-size: 1.3rem;
     color: #2e6260;
@@ -189,11 +218,14 @@ body {
   }
   .form__field::placeholder {
     color: transparent;
+    font-family: fantasy;
   }
   .form__field:placeholder-shown ~ .form__label {
     font-size: 1.3rem;
     cursor: text;
+    color: #a93c33;
     top: 20px;
+    font-family: fantasy;
   }
   
   .form__label {
@@ -203,6 +235,7 @@ body {
     transition: 0.2s;
     font-size: 1rem;
     color: #2e6260;
+    font-family: fantasy;
   }
   
   .form__field:focus {
@@ -211,6 +244,7 @@ body {
     border-width: 3px;
     border-image: linear-gradient(to right, #d27e05, #a4412a);
     border-image-slice: 1;
+    font-family: fantasy;
   }
   .form__field:focus ~ .form__label {
     position: absolute;
@@ -220,27 +254,15 @@ body {
     font-size: 1rem;
     color: #d17f12;
     font-weight: 700;
+    font-family: fantasy;
   }
   
   /* reset input */
   .form__field:required, .form__field:invalid {
     box-shadow: none;
+    font-family: fantasy;
   }
   
-  /* demo */
- /*  body {
-    font-family: "Poppins", sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-size: 1.5rem;
-    background-color: #222222;
-  }*/
-   
-
-
   /* Responsive */
 
   @media screen and (max-width: 740px){
@@ -256,9 +278,15 @@ body {
 
 
 div#container {
-    background-color: #eadfb1;
+    background-color: #eadfb161;
     ;
 }
+
+.fav-container{
+    font-family: fantasy;
+    color: #472b21;
+}
+
 
 .favoriteLine {
     display: grid;
@@ -274,6 +302,8 @@ div#container {
   color: #2e6260;
   height: 100px;
   width: 100vw;
+  font-family: fantasy;
+  cursor: pointer;
 }
 
 
@@ -283,8 +313,22 @@ div#container {
 }
 
 .err {
-  color: red;
+  color: darkred;
   font-size: xx-large;
+  font-family: fantasy;
+  
 }
 
 
+.favoritesMainContainer{
+  background-color: #eadfb161;
+}
+.hiphopMainContainer{
+  background-color: #eadfb161;
+}
+.rockMainContainer{
+  background-color: #eadfb161;
+}
+.popMainContainer{
+  background-color: #eadfb161;
+}
