@@ -97,12 +97,12 @@ strong:hover{
 }
 
 #lyrics {
+  color: #000;
     position: relative;
     width: 600px;
     height: 400px;
     overflow-y: scroll;
     -ms-overflow-style: none;
-    background-color: #eadfb161;
 }
 
 #lyrics::-webkit-scrollbar {
@@ -308,6 +308,10 @@ div#container {
   height: 100px;
   width: 100vw;
   font-family: fantasy;
+  cursor: pointer;
+}
+
+.recSong {
   cursor: pointer;
 }
 
