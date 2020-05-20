@@ -3,30 +3,35 @@ const renderer = new Renderer()
 const render = renderer.renderData
 const renderErr = renderer.renderError
 const renderRecomendations = renderer.renderRecomendations
+const renderUser = renderer.renderPlaylist
 
 const renderFavorites = renderer.renderFavorites
 const renderPop = renderer.renderPop
 const renderHiphop = renderer.renderHiphop
 const renderRock = renderer.renderRock
 
-async function showFavFromDB() {
+async function showFavFromDB () {
   await App.getFavorites()
   renderFavorites(App.favorites)
 }
 
-async function showPopFromDB() {
+async function showPopFromDB () {
   await App.getPop()
   renderPop(App.pop)
 }
 
-async function showHiphopFromDB() {
+async function showHiphopFromDB () {
   await App.getHiphop()
   renderHiphop(App.hiphop)
 }
 
-async function showRockFromDB() {
+async function showRockFromDB () {
   await App.getRock()
   renderRock(App.rock)
+}
+async function showFromDB (nameOfCategory) {
+  await App.getUserPlaylist(nameOfCategory)
+  renderUser(App[nameOfCategory])
 }
 
 
@@ -42,16 +47,16 @@ const handleSearch = async function (songName, singerName) {
     renderPop(App.pop)
     renderHiphop(App.hiphop)
     renderRock(App.rock)
- }
+  }
 }
 
 const handleTraanslate = async function (songName, singerName, to) {
   await App.getTranslated(songName, singerName, to)
-  renderer.insertTranslate(App.translatedText,songName, singerName)
+  renderer.insertTranslate(App.translatedText, songName, singerName)
 }
 
-const handleDeleteFromFav = async function(singer,song) {
-  await App.deleteSong(singer,song)
+const handleDeleteFromFav = async function (singer, song) {
+  await App.deleteSong(singer, song)
   await App.getFavorites()
   await App.getPop()
   await App.getRock()
@@ -160,6 +165,11 @@ $('#container').on('click', '#rockBut', function () {
   showRockFromDB()
 })
 
+$('#container').on('click', '#createPlaylistBtn', function () {
+  const nameOfPlaylist = $('#nameofnewplaylist').val()
+  handleleCategory(nameOfPlaylist)
+  showFromDB(nameOfPlaylist)
+})
 
 $('#container').on('click', '.recSong', function () {
   const songName = $(this).text()
@@ -168,24 +178,67 @@ $('#container').on('click', '.recSong', function () {
 })
 
 
-$('#container').on('click', '.favSong', function () {
+$('.cont').on('click', '.favSong', function () {
   const songName = $(this).text().split('-')[1]
   const singerName = $(this).text().split('-')[0]
   handleSearch(songName, singerName)
 })
 
 
-$('.cont').on('click', '.remove', function () {
+// $('.cont').on('click', '.remove', function () {
+//   const FullInfo = $(this).closest('.favoriteLine').find('.favSong').text().split('-')
+//   const singer = FullInfo[0]
+//   const song = FullInfo[1]
+//   handleDeleteFromFav(singer, song)
+// })
+
+$('#fcontainer').on('click', '.remove', function () {
   const FullInfo = $(this).closest('.favoriteLine').find('.favSong').text().split('-')
   const singer = FullInfo[0]
   const song = FullInfo[1]
-  handleDeleteFromFav(singer,song)
+  handleDeleteFromFav(singer, song)
+})
+
+$('#pcontainer').on('click', '.remove', function () {
+  const FullInfo = $(this).closest('.favoriteLine').find('.favSong').text().split('-')
+  const singer = FullInfo[0]
+  const song = FullInfo[1]
+  handleDeleteFromFav(singer, song)
+})
+
+$('#rcontainer').on('click', '.remove', function () {
+  const FullInfo = $(this).closest('.favoriteLine').find('.favSong').text().split('-')
+  const singer = FullInfo[0]
+  const song = FullInfo[1]
+  handleDeleteFromFav(singer, song)
+})
+
+$('#hcontainer').on('click', '.remove', function () {
+  const FullInfo = $(this).closest('.favoriteLine').find('.favSong').text().split('-')
+  const singer = FullInfo[0]
+  const song = FullInfo[1]
+  handleDeleteFromFav(singer, song)
+})
+
+$('#ucontainer').on('click', '.remove', async function () {
+  const FullInfo = $(this).closest('.favoriteLine').find('.favSong').text().split('-')
+  const playList = $(this).closest('.userMainContainer').find('h1').text().split(' ')[0]
+  const singer = FullInfo[0]
+  const song = FullInfo[1]
+  await App.deleteSong(singer, song)
+  await App.getUserPlaylist(playList)
+  renderUser(App[playList])
+})
+
+$('#ucontainer').on('click', '.favSong', function () {
+  const songName = $(this).text().split('-')[1]
+  const singerName = $(this).text().split('-')[0]
+  handleSearch(songName, singerName)
 })
 
 
-
-$('#fcontainer').on('click','#shuffleBar',function () {
-  const favoritesLength  =  App.favorites.length
+$('#fcontainer').on('click', '#shuffleBar', function () {
+  const favoritesLength = App.favorites.length
   const randomIndex = Math.floor(Math.random() * favoritesLength)
   const songName = App.favorites[randomIndex].songName
   const singerName = App.favorites[randomIndex].singerName
@@ -195,9 +248,9 @@ $('#fcontainer').on('click','#shuffleBar',function () {
 
 
 $('#container').on('click', '.otherRec', function () {
-   const songName = App.songData.songInfo.songName
-   const singerName = App.songData.songInfo.singerName
-   handleSearch(songName, singerName)
+  const songName = App.songData.songInfo.songName
+  const singerName = App.songData.songInfo.singerName
+  handleSearch(songName, singerName)
 })
 
 
@@ -215,4 +268,5 @@ showFavFromDB()
 showPopFromDB()
 showRockFromDB()
 showHiphopFromDB()
+
 
