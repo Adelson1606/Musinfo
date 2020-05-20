@@ -20,14 +20,13 @@
             <label for="artistIn" class="form__label">Artist name</label>
         </div>
         <button id='button' type="submit"><i class="fa fa-search"></i></button><br>
-
     </div><br><br><br>
 
     <div class="cont" id="container"></div>
-    <div class="cont" id ="fcontainer"></div>
-    <div class="cont" id ="pcontainer"></div>
-    <div class="cont" id ="hcontainer"></div>
-    <div class="cont" id ="rcontainer"></div>
+    <div class="cont" id="fcontainer"></div>
+    <div class="cont" id="pcontainer"></div>
+    <div class="cont" id="hcontainer"></div>
+    <div class="cont" id="rcontainer"></div>
 
     <script id="song-template" type="text/x-handlebars-template">
 
@@ -81,9 +80,6 @@
     <div class="err">{{eroor}}</div>
    </script>
 
-
-
-
     <script class="recomendations" type="text/x-handlebars-template">
     <br><br>
     <h1><strong>You may also like</strong></h1>
@@ -109,7 +105,7 @@
         <source src={{preview}} type="audio/mpeg">
     </audio>
     <div class='remove'><i class="fa fa-minus-circle"></i></div>
-    </div>
+    </div><br>
     {{/each}}
     </div><br>
     <div id="shuffleBar">
@@ -132,13 +128,13 @@
             <source src={{preview}} type="audio/mpeg">
         </audio>
         <div class='remove'><i class="fa fa-minus-circle"></i></div>
-        </div>
+        </div><br>
         {{/each}}
         </div><br>
         </div>
         </script>
 
-        <script class="hiphop" type="text/x-handlebars-template">
+    <script class="hiphop" type="text/x-handlebars-template">
             <br><br>
             <div class="hiphopMainContainer">
             <h1><strong>Hip-Hop songs playlist</strong></h1>
@@ -150,7 +146,7 @@
                 <source src={{preview}} type="audio/mpeg">
             </audio>
             <div class='remove'><i class="fa fa-minus-circle"></i></div>
-            </div>
+            </div><br>
             {{/each}}
             </div><br>
             </div>
@@ -159,7 +155,7 @@
 
 
 
-            <script class="rock" type="text/x-handlebars-template">
+    <script class="rock" type="text/x-handlebars-template">
                 <br><br>
                 <div class="rockMainContainer">
                 <h1><strong>Rock songs playlist</strong></h1>
@@ -171,7 +167,7 @@
                     <source src={{preview}} type="audio/mpeg">
                 </audio>
                 <div class='remove'><i class="fa fa-minus-circle"></i></div>
-                </div>
+                </div><br>
                 {{/each}}
                 </div><br>
                 </div>

@@ -138,6 +138,11 @@ body {
   transform: translateY(4px);
 }
 
+.fa-play-circle:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
 
 .fa-minus-circle {
   color: darkred;
@@ -270,8 +275,6 @@ div#container {
   height: 100px;
   width: 100vw;
 }
-
-
 
 
 .type {

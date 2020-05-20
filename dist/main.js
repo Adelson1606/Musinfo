@@ -30,8 +30,6 @@ async function showRockFromDB() {
 }
 
 
-
-
 const handleSearch = async function (songName, singerName) {
   await App.getSongData(songName, singerName)
   if (App.songData === "Sorry, we can't find it. Try another song") {
@@ -112,53 +110,55 @@ $('#container').on('click', '#en', function () {
   handleTraanslate(songName, singerName, 'en')
 })
 
-const handleFavorite = async function () {
-  App.songData.category = "favorites"
-  await App.saveSong()
-}
 
-const handlePop = async function () {
-  App.songData.category = "pop"
+const handleleCategory = async function (category) {
+  App.songData.category = category
   await App.saveSong()
 }
 
 
-const handleHiphop = async function () {
-  App.songData.category = "hiphop"
-  await App.saveSong()
-}
+// const handleFavorite = async function () {
+//   App.songData.category = "favorites"
+//   await App.saveSong()
+// }
 
-const handleRock = async function () {
-  App.songData.category = "rock"
-  await App.saveSong()
-}
+// const handlePop = async function () {
+//   App.songData.category = "pop"
+//   await App.saveSong()
+// }
+
+
+// const handleHiphop = async function () {
+//   App.songData.category = "hiphop"
+//   await App.saveSong()
+// }
+
+// const handleRock = async function () {
+//   App.songData.category = "rock"
+//   await App.saveSong()
+// }
 
 
 $('#container').on('click', '#favBut', function () {
-  handleFavorite()
-
+  handleleCategory("favorites")
   showFavFromDB()
 })
 
 
 $('#container').on('click', '#hiphopBut', function () {
-  handleHiphop()
+  handleleCategory("hiphop")
   showHiphopFromDB()
 })
 
 $('#container').on('click', '#popBut', function () {
-  handlePop()
+  handleleCategory("pop")
   showPopFromDB()
 })
 
 $('#container').on('click', '#rockBut', function () {
-  handleRock()
+  handleleCategory("rock")
   showRockFromDB()
 })
-
-
-
-
 
 
 $('#container').on('click', '.recSong', function () {
@@ -184,7 +184,7 @@ $('.cont').on('click', '.remove', function () {
 
 
 
-$('#container').on('click','#shuffleBar',function () {
+$('#fcontainer').on('click','#shuffleBar',function () {
   const favoritesLength  =  App.favorites.length
   const randomIndex = Math.floor(Math.random() * favoritesLength)
   const songName = App.favorites[randomIndex].songName
