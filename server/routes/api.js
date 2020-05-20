@@ -2,7 +2,11 @@ const express = require('express')
 const router = express.Router()
 const request = require('axios')
 
+const Hiphop = require('../models/Hiphop')
+const Rock = require('../models/Rock')
+const Pop = require('../models/Pop')
 const Music = require('../models/Music')
+
 
 const googleApiParams = {
   maxResults: 1,
@@ -81,7 +85,7 @@ router.get('/music/', async function (req, res) {
   const errMessage = "Ho No! We couldn't find your song. Please try again."
   const data = await apiRequest(singer, song)
     .catch(function (err) {
-      console.error(err)
+      //console.error(err)
     })
   if (!data) {
     res.send(errMessage)
@@ -110,13 +114,17 @@ router.get('/music/', async function (req, res) {
 })
 
 
+
 router.get('/songs', async function (req, res) {
-  const songs = await Music.find({})
+  const category = req.query.category.toLowerCase()
+  const songs = await Music.find({"category": category})
+
   res.send(songs)
 })
 
-router.post('/music', async function (req, res) {
+router.post(`/music/:key`, async function (req, res) {
   const newSong = req.body
+
 
   const s = new Music({
     name: newSong.songInfo.youTubeTitle,
@@ -125,7 +133,8 @@ router.post('/music', async function (req, res) {
     lyricsArr: newSong.songInfo.lyricsArr,
     youTubeURL: newSong.songInfo.youTubeURL,
     youTubeTitle: newSong.songInfo.youTubeTitle,
-    preview: newSong.songInfo.preview
+    preview: newSong.songInfo.preview,
+    category: newSong.category
   })
   const isExist = await Music.find({
     $and: [{
@@ -137,10 +146,31 @@ router.post('/music', async function (req, res) {
   if (isExist.length === 0) {
     s.save()
     res.send(newSong)
-  } else {
-    res.end()
-  }
 
+  } else {
+    const s = new Music({
+      name: newSong.songInfo.youTubeTitle,
+      songName: newSong.songInfo.songName,
+      singerName: newSong.songInfo.singerName,
+      lyricsArr: newSong.songInfo.lyricsArr,
+      youTubeURL: newSong.songInfo.youTubeURL,
+      youTubeTitle: newSong.songInfo.youTubeTitle,
+      preview: newSong.songInfo.preview
+    })
+    const isExist = await Music.find({
+      $and: [{
+        songName: newSong.songInfo.songName
+      }, {
+        singerName: newSong.songInfo.singerName
+      }]
+    })
+    if (isExist.length === 0) {
+      s.save()
+      res.send(newSong)
+    } else {
+      res.end()
+    }
+  }
 
 })
 
@@ -155,7 +185,7 @@ router.delete('/music/', async function (req, res) {
       singerName: singer
     }]
   }, () => {
-    console.log(song, '-', singer, "remover from data")
+    //console.log(song, '-', singer, "remover from data")
   }).then(function () {
     res.send("apocalypse!")
   })

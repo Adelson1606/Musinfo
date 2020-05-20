@@ -5,11 +5,30 @@ const renderErr = renderer.renderError
 const renderRecomendations = renderer.renderRecomendations
 
 const renderFavorites = renderer.renderFavorites
+const renderPop = renderer.renderPop
+const renderHiphop = renderer.renderHiphop
+const renderRock = renderer.renderRock
 
 async function showFavFromDB() {
   await App.getFavorites()
   renderFavorites(App.favorites)
 }
+
+async function showPopFromDB() {
+  await App.getPop()
+  renderPop(App.pop)
+}
+
+async function showHiphopFromDB() {
+  await App.getHiphop()
+  renderHiphop(App.hiphop)
+}
+
+async function showRockFromDB() {
+  await App.getRock()
+  renderRock(App.rock)
+}
+
 
 const handleSearch = async function (songName, singerName) {
   await App.getSongData(songName, singerName)
@@ -20,6 +39,9 @@ const handleSearch = async function (songName, singerName) {
     renderRecomendations(App.songData.recSongsArr)
     await App.getFavorites()
     renderFavorites(App.favorites)
+    renderPop(App.pop)
+    renderHiphop(App.hiphop)
+    renderRock(App.rock)
  }
 }
 
@@ -31,7 +53,13 @@ const handleTraanslate = async function (songName, singerName, to) {
 const handleDeleteFromFav = async function(singer,song) {
   await App.deleteSong(singer,song)
   await App.getFavorites()
+  await App.getPop()
+  await App.getRock()
+  await App.getHiphop()
   renderFavorites(App.favorites)
+  renderPop(App.pop)
+  renderHiphop(App.hiphop)
+  renderRock(App.rock)
 }
 
 
@@ -82,14 +110,56 @@ $('#container').on('click', '#en', function () {
   handleTraanslate(songName, singerName, 'en')
 })
 
-const handleFavorite = async function () {
+
+const handleleCategory = async function (category) {
+  App.songData.category = category
   await App.saveSong()
 }
 
+
+// const handleFavorite = async function () {
+//   App.songData.category = "favorites"
+//   await App.saveSong()
+// }
+
+// const handlePop = async function () {
+//   App.songData.category = "pop"
+//   await App.saveSong()
+// }
+
+
+// const handleHiphop = async function () {
+//   App.songData.category = "hiphop"
+//   await App.saveSong()
+// }
+
+// const handleRock = async function () {
+//   App.songData.category = "rock"
+//   await App.saveSong()
+// }
+
+
 $('#container').on('click', '#favBut', function () {
-  handleFavorite()
+  handleleCategory("favorites")
   showFavFromDB()
 })
+
+
+$('#container').on('click', '#hiphopBut', function () {
+  handleleCategory("hiphop")
+  showHiphopFromDB()
+})
+
+$('#container').on('click', '#popBut', function () {
+  handleleCategory("pop")
+  showPopFromDB()
+})
+
+$('#container').on('click', '#rockBut', function () {
+  handleleCategory("rock")
+  showRockFromDB()
+})
+
 
 $('#container').on('click', '.recSong', function () {
   const songName = $(this).text()
@@ -105,7 +175,7 @@ $('#container').on('click', '.favSong', function () {
 })
 
 
-$('#container').on('click', '.remove', function () {
+$('.cont').on('click', '.remove', function () {
   const FullInfo = $(this).closest('.favoriteLine').find('.favSong').text().split('-')
   const singer = FullInfo[0]
   const song = FullInfo[1]
@@ -114,7 +184,7 @@ $('#container').on('click', '.remove', function () {
 
 
 
-$('#container').on('click','#shuffleBar',function () {
+$('#fcontainer').on('click','#shuffleBar',function () {
   const favoritesLength  =  App.favorites.length
   const randomIndex = Math.floor(Math.random() * favoritesLength)
   const songName = App.favorites[randomIndex].songName
@@ -142,3 +212,7 @@ document.getElementById('artistIn').addEventListener("keyup", function (event) {
 })
 
 showFavFromDB()
+showPopFromDB()
+showRockFromDB()
+showHiphopFromDB()
+

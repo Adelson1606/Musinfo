@@ -119,10 +119,17 @@ strong{
   }
 
 #favoriteBar {
+<<<<<<< HEAD
     position: relative;
     margin-left: 150px;
     font-family: 'fantasy';
     color: #472b21;
+=======
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  position: relative;
+  margin-left: 40px;
+>>>>>>> 8d140c1fdd28eca99e7720375deb5c3c989db9d1
 }
 
 .rec-container{
@@ -137,6 +144,11 @@ strong{
 }
 
 .fa-minus-circle:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.fa-play-circle:active {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
@@ -276,9 +288,16 @@ div#container {
   cursor: pointer;
 }
 
+
+.type {
+    height: 50px;
+    cursor: pointer;
+}
+
 .err {
   color: darkred;
   font-size: xx-large;
   font-family: fantasy;
 }
+
 

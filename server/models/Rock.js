@@ -1,17 +1,16 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const musicSchema = new Schema({
+const rockSchema = new Schema({
   name: String,
   songName: String,
   singerName: String,
   lyricsArr: Array,
   youTubeURL: String,
   youTubeTitle: String,
-  preview: String,
-  category: String
+  preview: String
 })
-const Music = mongoose.model("musics", musicSchema)
+const Rock = mongoose.model("rocks", rockSchema)
 
 
-module.exports = Music
+module.exports = Rock

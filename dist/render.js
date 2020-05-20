@@ -3,7 +3,6 @@ class Renderer {
     const source = $('#song-template').html()
     const template = Handlebars.compile(source)
     $('#container').empty()
-    console.log(_data)
     const newHTML = template(_data)
     $('#container').append(newHTML)
   }
@@ -37,6 +36,31 @@ class Renderer {
      const source = $('.favorites').html()
      const template = Handlebars.compile(source)
      const newHTML = template({favSongsArr})
-     $('#container').append(newHTML)
+     $('#fcontainer').append(newHTML)
    }
+
+   renderPop(popArr) {
+    $('.popMainContainer').empty()
+    const source = $('.pop').html()
+    const template = Handlebars.compile(source)
+    const newHTML = template({popArr})
+    $('#pcontainer').append(newHTML)
+  }
+
+  renderHiphop(hiphopArr) {
+    $('.hiphopMainContainer').empty()
+    const source = $('.hiphop').html()
+    const template = Handlebars.compile(source)
+    const newHTML = template({hiphopArr})
+    $('#hcontainer').append(newHTML)
+  }
+
+  renderRock(rockArr) {
+    $('.rockMainContainer').empty()
+    const source = $('.rock').html()
+    const template = Handlebars.compile(source)
+    const newHTML = template({rockArr})
+    $('#rcontainer').append(newHTML)
+  }
+
 }
