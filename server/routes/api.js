@@ -85,7 +85,7 @@ router.get('/music/', async function (req, res) {
   const errMessage = "Sorry, we can't find it. Try another song"
   const data = await apiRequest(singer, song)
     .catch(function (err) {
-      console.error(err)
+      //console.error(err)
     })
   if (!data) {
     res.send(errMessage)
@@ -185,7 +185,7 @@ router.delete('/music/', async function (req, res) {
       singerName: singer
     }]
   }, () => {
-    console.log(song, '-', singer, "remover from data")
+    //console.log(song, '-', singer, "remover from data")
   }).then(function () {
     res.send("apocalypse!")
   })
