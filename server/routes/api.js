@@ -2,9 +2,6 @@ const express = require('express')
 const router = express.Router()
 const request = require('axios')
 
-const Hiphop = require('../models/Hiphop')
-const Rock = require('../models/Rock')
-const Pop = require('../models/Pop')
 const Music = require('../models/Music')
 
 
@@ -69,7 +66,7 @@ async function apiRequest (singer, song) {
  
   const lyricsString = lyricreq.data.lyrics
   const lyricsArrData = lyricsString.split(/\r?\n/)
-  const deezerArrData = deezerreq.data //need for making recomendations
+  const deezerArrData = deezerreq.data 
   return {
     youtubedata,
     lyricsArrData,
@@ -79,7 +76,6 @@ async function apiRequest (singer, song) {
 
 
 router.get('/music/', async function (req, res) {
-  // const singer=req.params.singer
   const singer = req.query.singer.toLowerCase()
   const song = req.query.song.toLowerCase()
   const errMessage = "Ho No! We couldn't find your song. Please try again."
@@ -90,7 +86,6 @@ router.get('/music/', async function (req, res) {
   if (!data) {
     res.send(errMessage)
   } else {
-
     const songPreview = data.deezerArrData.data.find(s => s.title === toTitleCase(song))
     const songInfo = {
       name: data.youtubedata.snippet.title,
@@ -117,14 +112,13 @@ router.get('/music/', async function (req, res) {
 
 router.get('/songs', async function (req, res) {
   const category = req.query.category.toLowerCase()
-  const songs = await Music.find({"category": category})
+  const songs = await Music.find({ category: category })
 
   res.send(songs)
 })
 
-router.post(`/music/:key`, async function (req, res) {
+router.post(`/music/`, async function (req, res) {
   const newSong = req.body
-
 
   const s = new Music({
     name: newSong.songInfo.youTubeTitle,
@@ -141,36 +135,18 @@ router.post(`/music/:key`, async function (req, res) {
       songName: newSong.songInfo.songName
     }, {
       singerName: newSong.songInfo.singerName
-    }]
+    }, {
+      category: newSong.category
+    }
+    ]
   })
   if (isExist.length === 0) {
     s.save()
     res.send(newSong)
-
   } else {
-    const s = new Music({
-      name: newSong.songInfo.youTubeTitle,
-      songName: newSong.songInfo.songName,
-      singerName: newSong.songInfo.singerName,
-      lyricsArr: newSong.songInfo.lyricsArr,
-      youTubeURL: newSong.songInfo.youTubeURL,
-      youTubeTitle: newSong.songInfo.youTubeTitle,
-      preview: newSong.songInfo.preview
-    })
-    const isExist = await Music.find({
-      $and: [{
-        songName: newSong.songInfo.songName
-      }, {
-        singerName: newSong.songInfo.singerName
-      }]
-    })
-    if (isExist.length === 0) {
-      s.save()
-      res.send(newSong)
-    } else {
-      res.end()
-    }
+    res.end()
   }
+
 
 })
 

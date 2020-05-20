@@ -26,7 +26,9 @@
     <div class="cont" id="fcontainer"></div>
     <div class="cont" id="pcontainer"></div>
     <div class="cont" id="hcontainer"></div>
-    <div class="cont" id="rcontainer"></div>
+    <div class="cont" id="rcontainer"></div>  
+    <div class="cont" id="ucontainer"></div>
+ 
 
     <script id="song-template" type="text/x-handlebars-template">
 
@@ -50,6 +52,14 @@
                 <i id='hiphopBut' class="fa fa-heart"></i>
                 <label ><strong>Add To Hip-Hop Playlist</strong></label>
        </div>
+
+       <div id="create">
+     <!-- <i id='hiphopBut' class="fa fa-heart"></i> -->
+        <label ><strong>create playlist</strong></label>
+        <input id='nameofnewplaylist' placeholder="create a new playlist">
+        <button id='createPlaylistBtn'>Add</button>
+</div>
+
 
     </div>
 
@@ -100,18 +110,21 @@
     <div class='fav-container'>
     {{#each favSongsArr}}
     <div class="favoriteLine">
-    <div class='favSong'>{{singerName}}-{{songName}}</div>
-    <audio controls>
-        <source src={{preview}} type="audio/mpeg">
-    </audio>
-    <div class='remove'><i class="fa fa-minus-circle"></i></div>
-    </div><br>
+        <div class='favSong'>{{singerName}}-{{songName}}</div>
+            <audio controls>
+            <source src={{preview}} type="audio/mpeg">
+             </audio>
+        <div class='remove'><i class="fa fa-minus-circle"></i></div>
+    </div>
+    <br>
     {{/each}}
     </div><br>
+    {{#if favSongsArr}}
     <div id="shuffleBar">
         <label >Confused? Click to play a random song of your favorites</label>
         <i class="fa fa-play-circle"></i>
-        </div>
+    </div>
+    {{/if}}
     </div>
     </script>
 
@@ -123,12 +136,13 @@
         <div class='fav-container'>
         {{#each popArr}}
         <div class="favoriteLine">
-        <div class='favSong'>{{singerName}}-{{songName}}</div>
-        <audio controls>
-            <source src={{preview}} type="audio/mpeg">
-        </audio>
-        <div class='remove'><i class="fa fa-minus-circle"></i></div>
-        </div><br>
+            <div class='favSong'>{{singerName}}-{{songName}}</div>
+            <audio controls>
+                 <source src={{preview}} type="audio/mpeg">
+            </audio>
+             <div class='remove'><i class="fa fa-minus-circle"></i></div>
+        </div>
+        <br>
         {{/each}}
         </div><br>
         </div>
@@ -141,7 +155,7 @@
             <div class='fav-container'>
             {{#each hiphopArr}}
             <div class="favoriteLine">
-            <div class='favSong'>{{singerName}}-{{songName}}</div>
+            <div class='favSong hiphop'>{{singerName}}-{{songName}}</div>
             <audio controls>
                 <source src={{preview}} type="audio/mpeg">
             </audio>
@@ -161,8 +175,8 @@
                 <h1><strong>Rock songs playlist</strong></h1>
                 <div class='fav-container'>
                 {{#each rockArr}}
-                <div class="favoriteLine">
-                <div class='favSong'>{{singerName}}-{{songName}}</div>
+                <div class="favoriteLine rock">
+                <div class='favSong rock'>{{singerName}}-{{songName}}</div>
                 <audio controls>
                     <source src={{preview}} type="audio/mpeg">
                 </audio>
@@ -172,6 +186,24 @@
                 </div><br>
                 </div>
                 </script>
+
+<script class="userplaylist" type="text/x-handlebars-template">
+    <br><br>
+    <div class="userMainContainer">
+        <h1><strong>{{category}} songs playlist</strong></h1>
+         <div class='fav-container'>
+        {{#each songsArr}}
+            <div class="favoriteLine">
+            <p class='favSong'>{{singerName}}-{{songName}}</p>
+            <audio controls>
+                <source src={{preview}} type="audio/mpeg">
+            </audio>
+            <div class='remove'><i class="fa fa-minus-circle"></i></div>
+            </div><br>
+      {{/each}}
+    </div><br>
+    </div>
+</script>
 
 
 

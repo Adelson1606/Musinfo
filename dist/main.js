@@ -3,30 +3,35 @@ const renderer = new Renderer()
 const render = renderer.renderData
 const renderErr = renderer.renderError
 const renderRecomendations = renderer.renderRecomendations
+const renderUser = renderer.renderPlaylist
 
 const renderFavorites = renderer.renderFavorites
 const renderPop = renderer.renderPop
 const renderHiphop = renderer.renderHiphop
 const renderRock = renderer.renderRock
 
-async function showFavFromDB() {
+async function showFavFromDB () {
   await App.getFavorites()
   renderFavorites(App.favorites)
 }
 
-async function showPopFromDB() {
+async function showPopFromDB () {
   await App.getPop()
   renderPop(App.pop)
 }
 
-async function showHiphopFromDB() {
+async function showHiphopFromDB () {
   await App.getHiphop()
   renderHiphop(App.hiphop)
 }
 
-async function showRockFromDB() {
+async function showRockFromDB () {
   await App.getRock()
   renderRock(App.rock)
+}
+async function showFromDB (nameOfCategory) {
+  await App.getUserPlaylist(nameOfCategory)
+  renderUser(App[nameOfCategory])
 }
 
 
@@ -161,6 +166,11 @@ $('#container').on('click', '#rockBar', function () {
   showRockFromDB()
 })
 
+$('#container').on('click', '#createPlaylistBtn', function () {
+  const nameOfPlaylist = $('#nameofnewplaylist').val()
+  handleleCategory(nameOfPlaylist)
+  showFromDB(nameOfPlaylist)
+})
 
 $('#container').on('click', '.recSong', function () {
   const songName = $(this).text()
@@ -176,13 +186,57 @@ $('.cont').on('click', '.favSong', function () {
 })
 
 
-$('.cont').on('click', '.remove', function () {
+// $('.cont').on('click', '.remove', function () {
+//   const FullInfo = $(this).closest('.favoriteLine').find('.favSong').text().split('-')
+//   const singer = FullInfo[0]
+//   const song = FullInfo[1]
+//   handleDeleteFromFav(singer, song)
+// })
+
+$('#fcontainer').on('click', '.remove', function () {
   const FullInfo = $(this).closest('.favoriteLine').find('.favSong').text().split('-')
   const singer = FullInfo[0]
   const song = FullInfo[1]
   handleDeleteFromFav(singer, song)
 })
 
+$('#pcontainer').on('click', '.remove', function () {
+  const FullInfo = $(this).closest('.favoriteLine').find('.favSong').text().split('-')
+  const singer = FullInfo[0]
+  const song = FullInfo[1]
+  handleDeleteFromFav(singer, song)
+})
+
+$('#rcontainer').on('click', '.remove', function () {
+  const FullInfo = $(this).closest('.favoriteLine').find('.favSong').text().split('-')
+  const singer = FullInfo[0]
+  const song = FullInfo[1]
+  handleDeleteFromFav(singer, song)
+})
+
+$('#hcontainer').on('click', '.remove', function () {
+  const FullInfo = $(this).closest('.favoriteLine').find('.favSong').text().split('-')
+  const singer = FullInfo[0]
+  const song = FullInfo[1]
+  handleDeleteFromFav(singer, song)
+})
+
+$('#ucontainer').on('click', '.remove', async function () {
+  const FullInfo = $(this).closest('.favoriteLine').find('.favSong').text().split('-')
+  const playList = $(this).closest('.userMainContainer').find('h1').text().split(' ')[0]
+  const singer = FullInfo[0]
+  const song = FullInfo[1]
+  await App.deleteSong(singer, song)
+  await App.getUserPlaylist(playList)
+  renderUser(App[playList])
+
+})
+
+$('#ucontainer').on('click', '.favSong', function () {
+  const songName = $(this).text().split('-')[1]
+  const singerName = $(this).text().split('-')[0]
+  handleSearch(songName, singerName)
+})
 
 
 $('#fcontainer').on('click', '#shuffleBar', function () {
@@ -216,4 +270,5 @@ showFavFromDB()
 showPopFromDB()
 showRockFromDB()
 showHiphopFromDB()
+
 
