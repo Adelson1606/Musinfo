@@ -260,3 +260,12 @@ div#container {
     justify-items: center;
     align-items: center;
 }
+
+#shuffleBar {
+  font-size: x-large;
+  font-weight: bold;
+  color: #2e6260;
+  height: 100px;
+  width: 100vw;
+}
+

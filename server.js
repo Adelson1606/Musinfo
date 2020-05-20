@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, 'node_modules')))
 
 // Mongoose setup
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/musicDB', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost/musicDB', { useNewUrlParser: true , useUnifiedTopology: true })
 
 app.use('/', api)
 

@@ -114,6 +114,16 @@ $('#container').on('click', '.remove', function () {
 
 
 
+$('#container').on('click','#shuffleBar',function () {
+  const favoritesLength  =  App.favorites.length
+  const randomIndex = Math.floor(Math.random() * favoritesLength)
+  const songName = App.favorites[randomIndex].songName
+  const singerName = App.favorites[randomIndex].singerName
+  handleSearch(songName, singerName)
+})
+
+
+
 document.getElementById('artistIn').addEventListener("keyup", function (event) {
   // Number 13 is the "Enter" key on the keyboard
   if (event.keyCode === 13) {
