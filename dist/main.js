@@ -86,8 +86,18 @@ const handleFavorite = async function () {
   await App.saveSong()
 }
 
-$('#container').on('click', '#favBut', function () {
-  handleFavorite()
+$('#container').on('click', '#hiphop', function () { ////////
+  App.saveSong('hiphop')
+  showFavFromDB()
+})
+
+$('#container').on('click', '#rock', function () { ////////
+  App.saveSong('rock')
+  showFavFromDB()
+})
+
+$('#container').on('click', '#pop', function () { ////////
+  App.saveSong('pop')
   showFavFromDB()
 })
 
@@ -141,4 +151,4 @@ document.getElementById('artistIn').addEventListener("keyup", function (event) {
   }
 })
 
-showFavFromDB()
+showFavFromDB("Rock")
