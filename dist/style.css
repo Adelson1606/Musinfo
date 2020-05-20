@@ -15,10 +15,36 @@ h1{
     font-family: fantasy;
 }
 
+.otherRec{
+  color: #2e6260;
+  font-family: fantasy;
+  font-size: xx-large;
+}
+
+.otherRec:hover{
+  color: #cb810d;    
+  cursor: pointer;
+  transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+}
+
+
 strong{
     color: #2e6260;
     font-family: fantasy;
     font-style: oblique;
+    font-size: 27px;
+}
+
+strong:hover{
+  color: #cb810d;    
+  cursor: pointer;
+  transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
 }
 
 #container{
@@ -44,7 +70,6 @@ strong{
     border: 0px solid #000;
     font-size: 70px;
     color: #2e6260;
-    
     transition: all 0.4s;
     -moz-transition: all 0.4s;
     -webkit-transition: all 0.4s;
@@ -104,13 +129,9 @@ strong{
   }
 
 
-#favBut{
-      color: green;
-
-  }
 
 #favBut:active {
-    box-shadow: 0 1px #666;
+    box-shadow: 0 1px darkred;
     transform: translateY(1px);
   }
 
@@ -118,19 +139,16 @@ strong{
       position: relative;
   }
 
-#favoriteBar {
-<<<<<<< HEAD
-    position: relative;
-    margin-left: 150px;
-    font-family: 'fantasy';
-    color: #472b21;
-=======
+ /* #favoriteBar {
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+   grid-template-rows: 1fr 1fr 1fr; 
   position: relative;
   margin-left: 40px;
->>>>>>> 8d140c1fdd28eca99e7720375deb5c3c989db9d1
-}
+  font-family: 'fantasy';
+  color: #472b21;
+}  */
+
+
 
 .rec-container{
     display: grid;
@@ -171,6 +189,7 @@ strong{
     font-size: x-large;
     justify-items: center;
     align-items: center;
+        font-family: fantasy;
     /* border: black solid 1px; */
 }
 
@@ -298,6 +317,7 @@ div#container {
   color: darkred;
   font-size: xx-large;
   font-family: fantasy;
+  
 }
 
 

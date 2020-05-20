@@ -31,6 +31,7 @@ async function showRockFromDB() {
 
 
 const handleSearch = async function (songName, singerName) {
+  $(`.err`).empty()
   await App.getSongData(songName, singerName)
   if (App.songData === "Ho No! We couldn't find your song. Please try again.") {
     renderErr(App.songData)
@@ -139,23 +140,23 @@ const handleleCategory = async function (category) {
 // }
 
 
-$('#container').on('click', '#favBut', function () {
+$('#container').on('click', '#favoriteBar', function () {
   handleleCategory("favorites")
   showFavFromDB()
 })
 
 
-$('#container').on('click', '#hiphopBut', function () {
+$('#container').on('click', '#hiphopBar', function () {
   handleleCategory("hiphop")
   showHiphopFromDB()
 })
 
-$('#container').on('click', '#popBut', function () {
+$('#container').on('click', '#popBar', function () {
   handleleCategory("pop")
   showPopFromDB()
 })
 
-$('#container').on('click', '#rockBut', function () {
+$('#container').on('click', '#rockBar', function () {
   handleleCategory("rock")
   showRockFromDB()
 })
