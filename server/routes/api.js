@@ -112,7 +112,7 @@ router.get('/music/', async function (req, res) {
 
 router.get('/songs', async function (req, res) {
   const category = req.query.category.toLowerCase()
-  const songs = await Music.find({ category: category })
+  const songs = await Music.find({ 'category': category })
 
   res.send(songs)
 })
