@@ -16,7 +16,7 @@ const handleSearch = async function (songName, singerName) {
     renderRecomendations(App.songData.recSongsArr)
     await App.getFavorites()
     renderFavorites(App.favorites)
-  }
+ }
 }
 
 const handleTraanslate = async function (songName, singerName, to) {
@@ -66,7 +66,11 @@ $('#container').on('click', '#fr', function () {
   const singerName = $('#artistIn').val()
   handleTraanslate(songName, singerName, 'fr')
 })
-
+$('#container').on('click', '#en', function () {
+  const songName = $('#songIn').val()
+  const singerName = $('#artistIn').val()
+  handleTraanslate(songName, singerName, 'en')
+})
 
 const handleFavorite = async function () {
   await App.saveSong()

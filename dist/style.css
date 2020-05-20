@@ -9,6 +9,16 @@ body {
     width: 100%;
   }
 
+  h1{
+    color: #2e6260;
+    font-family: fantasy;
+  }
+
+#container{
+    margin-top: 17%;
+}
+
+
 .input {
     font-weight: bold;
     display: inline-block;
@@ -21,8 +31,32 @@ body {
 }
 
 #button {
+    display: block;
     background: transparent;
+    align-items: center;
+    border: 0px solid #000;
+    font-size: 70px;
+    color: #2e6260;
+    
+    transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
 }
+
+
+  
+
+#button:hover{
+    color: #cb810d;    
+    cursor: pointer;
+    transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+}
+
+
 
 ::placeholder { 
     color: black;
@@ -41,6 +75,7 @@ body {
     height: 400px;
     overflow-y: scroll;
     -ms-overflow-style: none;
+    background-color: #eadfb1;
 }
 
 #lyrics::-webkit-scrollbar {
@@ -112,3 +147,91 @@ body {
 }
 
 
+/* Maayan */
+
+.form__group {
+    position: relative;
+    padding: 15px 0 0;
+    margin-top: 10px;
+    width: 30%;
+    float: left;
+  }
+  
+  .form__field {
+    font-family: inherit;
+    width: 80%;
+    border: 0;
+    border-bottom: 2px solid #2e6260;
+    outline: 0;
+    font-size: 1.3rem;
+    color: #2e6260;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+  }
+  .form__field::placeholder {
+    color: transparent;
+  }
+  .form__field:placeholder-shown ~ .form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+  }
+  
+  .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #2e6260;
+  }
+  
+  .form__field:focus {
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #d27e05, #a4412a);
+    border-image-slice: 1;
+  }
+  .form__field:focus ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #d17f12;
+    font-weight: 700;
+  }
+  
+  /* reset input */
+  .form__field:required, .form__field:invalid {
+    box-shadow: none;
+  }
+  
+  /* demo */
+ /*  body {
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 1.5rem;
+    background-color: #222222;
+  }*/
+   
+
+
+  /* Responsive */
+
+  @media screen and (max-width: 740px){
+    .form__group {
+        width: 100%;
+    
+    }
+    #songInfo{
+
+        display: block;
+    }
+  }
