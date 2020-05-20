@@ -8,9 +8,9 @@ class Renderer {
     $('#container').append(newHTML)
   }
 
-  insertTranslate (text) {
+  insertTranslate (text,songName, singerName) {
     $('#lyrics').empty()
-    let newHTML = " <h1>Lyrics</h1>"
+    let newHTML = ` <h1>${songName} - ${singerName}</h1>`
     for (const line of text) {
       newHTML += `<p>${line}</p>`
     }
