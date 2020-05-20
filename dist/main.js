@@ -55,7 +55,13 @@ const handleTraanslate = async function (songName, singerName, to) {
 const handleDeleteFromFav = async function(singer,song) {
   await App.deleteSong(singer,song)
   await App.getFavorites()
+  await App.getPop()
+  await App.getRock()
+  await App.getHiphop()
   renderFavorites(App.favorites)
+  renderPop(App.pop)
+  renderHiphop(App.hiphop)
+  renderRock(App.rock)
 }
 
 
@@ -169,7 +175,7 @@ $('#container').on('click', '.favSong', function () {
 })
 
 
-$('#container').on('click', '.remove', function () {
+$('.cont').on('click', '.remove', function () {
   const FullInfo = $(this).closest('.favoriteLine').find('.favSong').text().split('-')
   const singer = FullInfo[0]
   const song = FullInfo[1]
