@@ -105,7 +105,9 @@
 
     <script class="favorites" type="text/x-handlebars-template">
     <br><br>
+    
     <div class="favoritesMainContainer">
+        {{#if favSongsArr}}
     <h1><strong>Favorite songs playlist</strong></h1>
     <div class='fav-container'>
     {{#each favSongsArr}}
@@ -119,11 +121,13 @@
     <br>
     {{/each}}
     </div><br>
-    {{#if favSongsArr}}
+    
     <div id="shuffleBar">
         <label >Confused? Click to play a random song of your favorites</label>
         <i class="fa fa-play-circle"></i>
     </div>
+    {{else}}
+    <h1><strong>You can Add here you favorite song</strong></h1>
     {{/if}}
     </div>
     </script>
@@ -131,6 +135,7 @@
 
     <script class="pop" type="text/x-handlebars-template">
         <br><br>
+        {{#if popArr}}
         <div class="popMainContainer">
         <h1><strong>Pop songs playlist</strong></h1>
         <div class='fav-container'>
@@ -146,10 +151,12 @@
         {{/each}}
         </div><br>
         </div>
+        {{/if}}
         </script>
 
     <script class="hiphop" type="text/x-handlebars-template">
             <br><br>
+            {{#if hiphopArr}}
             <div class="hiphopMainContainer">
             <h1><strong>Hip-Hop songs playlist</strong></h1>
             <div class='fav-container'>
@@ -164,6 +171,7 @@
             {{/each}}
             </div><br>
             </div>
+            {{/if}}
             </script>
 
 
@@ -171,6 +179,7 @@
 
     <script class="rock" type="text/x-handlebars-template">
                 <br><br>
+                {{#if rockArr}}
                 <div class="rockMainContainer">
                 <h1><strong>Rock songs playlist</strong></h1>
                 <div class='fav-container'>
@@ -185,6 +194,7 @@
                 {{/each}}
                 </div><br>
                 </div>
+                {{/if}}
                 </script>
 
 <script class="userplaylist" type="text/x-handlebars-template">

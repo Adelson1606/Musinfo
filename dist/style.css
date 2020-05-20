@@ -349,3 +349,40 @@ div#container {
   text-decoration: underline;
   color: darkgoldenrod;
 }
+
+p {
+}
+
+div#favoriteBar {
+    margin: 10px;
+}
+
+div#rockBar {
+    margin: 10px;
+}
+
+strong {}
+
+div#popBar {
+    margin: 10px;
+}
+
+div#hiphopBar {
+    margin: 10px;
+}
+
+div#create {
+    margin: 10px;
+}
+
+input#nameofnewplaylist {
+    height: 30px;
+    background-color: #f2efe0;
+    /* color: aqua; */
+    /* place-content: center; */
+}
+
+button#createPlaylistBtn {
+    height: 30px;
+    width: 50px;
+}
