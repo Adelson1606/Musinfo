@@ -85,7 +85,7 @@ router.get('/music/', async function (req, res) {
   const errMessage = "Sorry, we can't find it. Try another song"
   const data = await apiRequest(singer, song)
     .catch(function (err) {
-      console.error(err)
+      //console.error(err)
     })
   if (!data) {
     res.send(errMessage)
