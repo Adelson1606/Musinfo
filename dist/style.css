@@ -10,10 +10,16 @@ body {
     width: 100%;
   }
 
-  h1{
+h1{
     color: #2e6260;
     font-family: fantasy;
-  }
+}
+
+strong{
+    color: #2e6260;
+    font-family: fantasy;
+    font-style: oblique;
+}
 
 #container{
     margin-top: 17%;
@@ -46,8 +52,6 @@ body {
 }
 
 
-  
-
 #button:hover{
     color: #cb810d;    
     cursor: pointer;
@@ -56,8 +60,6 @@ body {
     -webkit-transition: all 0.4s;
     -o-transition: all 0.4s;
 }
-
-
 
 ::placeholder { 
     color: black;
@@ -169,13 +171,14 @@ body {
     margin-top: 10px;
     width: 30%;
     float: left;
+    font-family: fantasy;
   }
   
   .form__field {
-    font-family: inherit;
+    font-family: fantasy;
     width: 80%;
     border: 0;
-    border-bottom: 2px solid #2e6260;
+    border-bottom: 2px solid #75927f;;
     outline: 0;
     font-size: 1.3rem;
     color: #2e6260;
@@ -185,11 +188,14 @@ body {
   }
   .form__field::placeholder {
     color: transparent;
+    font-family: fantasy;
   }
   .form__field:placeholder-shown ~ .form__label {
     font-size: 1.3rem;
     cursor: text;
+    color: #a93c33;
     top: 20px;
+    font-family: fantasy;
   }
   
   .form__label {
@@ -199,6 +205,7 @@ body {
     transition: 0.2s;
     font-size: 1rem;
     color: #2e6260;
+    font-family: fantasy;
   }
   
   .form__field:focus {
@@ -207,6 +214,7 @@ body {
     border-width: 3px;
     border-image: linear-gradient(to right, #d27e05, #a4412a);
     border-image-slice: 1;
+    font-family: fantasy;
   }
   .form__field:focus ~ .form__label {
     position: absolute;
@@ -216,27 +224,15 @@ body {
     font-size: 1rem;
     color: #d17f12;
     font-weight: 700;
+    font-family: fantasy;
   }
   
   /* reset input */
   .form__field:required, .form__field:invalid {
     box-shadow: none;
+    font-family: fantasy;
   }
   
-  /* demo */
- /*  body {
-    font-family: "Poppins", sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-size: 1.5rem;
-    background-color: #222222;
-  }*/
-   
-
-
   /* Responsive */
 
   @media screen and (max-width: 740px){
@@ -256,6 +252,12 @@ div#container {
     ;
 }
 
+.fav-container{
+    font-family: fantasy;
+    color: #472b21;
+}
+
+
 .favoriteLine {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -270,10 +272,12 @@ div#container {
   color: #2e6260;
   height: 100px;
   width: 100vw;
+  font-family: fantasy;
+  cursor: pointer;
 }
 
 .err {
-  color: red;
+  color: darkred;
   font-size: xx-large;
   font-family: fantasy;
 }
