@@ -72,7 +72,6 @@
     {{#each recSongsArr}}
     <div class='recSong'><label>{{this.title}}</label><br>
         <img src={{this.pic}}>  
-       
     </div>
     {{/each}}
     </div>
@@ -84,11 +83,10 @@
     <div class='fav-container'>
     {{#each favSongsArr}}
     <div class='favSong'>{{singerName}}-{{songName}}</div>
-      {{#if preview}}
-       <audio controls>
+    <audio controls>
         <source src={{preview}} type="audio/mpeg">
-       </audio>
-      {{/if}}
+    </audio>
+    <div class='remove'>REMOVE FROM FAV</div>
     {{/each}}
     </div>
     </script>

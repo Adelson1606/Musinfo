@@ -96,7 +96,11 @@ router.get('/music/', async function (req, res) {
       youTubeURL: data.youtubedata.id.videoId,
       youTubeTitle: data.youtubedata.snippet.title
     }
-    if (songPreview) songInfo.preview = songPreview.preview
+    if (songPreview) {
+      songInfo.preview = songPreview.preview
+    } else {
+      songInfo.preview = 'https://cdns-preview-1.dzcdn.net/stream/c-13039fed16a173733f227b0bec631034-10.mp3'
+    }
     const lenthOfall = data.deezerArrData.data.length
 
     const getRandom1 = Math.floor(Math.random() * lenthOfall)
