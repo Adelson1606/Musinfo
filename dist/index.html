@@ -30,6 +30,7 @@
     <div id ="rcontainer"></div>
 
     <script id="song-template" type="text/x-handlebars-template">
+
     <div id="songInfo">
         <div id="clipContainer">
                <iframe src="http://www.youtube.com/embed/{{songInfo.youTubeURL}}?autoplay=1&loop=1"
@@ -50,6 +51,7 @@
                 <i id='hiphopBut' class="fa fa-heart"></i>
                 <label ><strong>Add To Hip-Hop Playlist</strong></label>
        </div>
+
     </div>
 
     <div id="rightSideContainer">
@@ -85,6 +87,7 @@
     <script class="recomendations" type="text/x-handlebars-template">
     <br><br>
     <h1><strong>You may also like</strong></h1>
+    <div class='otherRec'>Show other</div>
     <div class='rec-container'>
     {{#each recSongsArr}}
     <div class='recSong'><label>{{this.title}}</label><br>

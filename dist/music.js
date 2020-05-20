@@ -6,6 +6,33 @@ class musicApp {
   async getSongData (song, singer) {
     const songInfo = await $.get(`/music/?singer=${singer}&song=${song}`) 
     if (songInfo) {
+      const bigArr = songInfo.recSongsArr
+      const lenthOfall = bigArr.length
+
+      const getRandom1 = Math.floor(Math.random() * lenthOfall)
+      const getRandom2 = Math.floor(Math.random() * lenthOfall)
+      const getRandom3 = Math.floor(Math.random() * lenthOfall)
+
+      const firsttitle =bigArr[getRandom1].title
+      const secondtitle =bigArr[getRandom2].title
+      const thirdtitle = bigArr[getRandom3].title
+      const firstpicUrl =bigArr[getRandom1].album.cover_medium
+      const secondpicUrl =bigArr[getRandom2].album.cover_medium
+      const thirdpicUrl = bigArr[getRandom3].album.cover_medium
+      songInfo.recSongsArr = [
+        {
+          title: firsttitle,
+          pic: firstpicUrl
+        },
+        {
+          title: secondtitle,
+          pic: secondpicUrl
+        },
+        {
+          title: thirdtitle,
+          pic: thirdpicUrl
+        }
+      ]
       this.songData = songInfo     
     }
   }
@@ -18,10 +45,10 @@ class musicApp {
   }
 
 
-  async saveSong() {
+  async saveSong (key) {
     $.ajax({
       type: "POST",
-      url: '/music',
+      url: `/music/${key}`,
       contentType: 'application/json; charset=utf-8',
       dataType: 'json',
       data: JSON.stringify(this.songData)
@@ -29,17 +56,18 @@ class musicApp {
   }
 
 
-  async deleteSong(singer,song) {
+  async deleteSong (singer, song) {
     $.ajax({
       url: `/music/?singer=${singer}&song=${song}`,
       type: 'DELETE',
       success: function (result) {}
-  });
+    })
 
   }
   
   async getFavorites() {
     const favSongsArr = await $.get('/songs/?category=favorites')
+
     if (favSongsArr) {
       this.favorites = favSongsArr
     }

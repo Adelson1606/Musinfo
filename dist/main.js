@@ -116,6 +116,7 @@ const handlePop = async function () {
   await App.saveSong()
 }
 
+
 const handleHiphop = async function () {
   App.songData.category = "hiphop"
   await App.saveSong()
@@ -129,6 +130,7 @@ const handleRock = async function () {
 
 $('#container').on('click', '#favBut', function () {
   handleFavorite()
+
   showFavFromDB()
 })
 
@@ -186,6 +188,13 @@ $('#container').on('click','#shuffleBar',function () {
 
 
 
+$('#container').on('click', '.otherRec', function () {
+   const songName = App.songData.songInfo.songName
+   const singerName = App.songData.songInfo.singerName
+   handleSearch(songName, singerName)
+})
+
+
 document.getElementById('artistIn').addEventListener("keyup", function (event) {
   // Number 13 is the "Enter" key on the keyboard
   if (event.keyCode === 13) {
@@ -200,3 +209,4 @@ showFavFromDB()
 showPopFromDB()
 showRockFromDB()
 showHiphopFromDB()
+

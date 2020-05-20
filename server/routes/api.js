@@ -2,7 +2,11 @@ const express = require('express')
 const router = express.Router()
 const request = require('axios')
 
+const Hiphop = require('../models/Hiphop')
+const Rock = require('../models/Rock')
+const Pop = require('../models/Pop')
 const Music = require('../models/Music')
+
 
 const googleApiParams = {
   maxResults: 1,
@@ -101,32 +105,7 @@ router.get('/music/', async function (req, res) {
     } else {
       songInfo.preview = 'https://cdns-preview-1.dzcdn.net/stream/c-13039fed16a173733f227b0bec631034-10.mp3'
     }
-    const lenthOfall = data.deezerArrData.data.length
-
-    const getRandom1 = Math.floor(Math.random() * lenthOfall)
-    const getRandom2 = Math.floor(Math.random() * lenthOfall)
-    const getRandom3 = Math.floor(Math.random() * lenthOfall)
-
-    const firsttitle = data.deezerArrData.data[getRandom1].title
-    const secondtitle = data.deezerArrData.data[getRandom2].title
-    const thirdtitle = data.deezerArrData.data[getRandom3].title
-    const firstpicUrl = data.deezerArrData.data[getRandom1].album.cover_medium
-    const secondpicUrl = data.deezerArrData.data[getRandom2].album.cover_medium
-    const thirdpicUrl = data.deezerArrData.data[getRandom3].album.cover_medium
-    const recSongsArr = [
-      {
-        title: firsttitle,
-        pic: firstpicUrl
-      },
-      {
-        title: secondtitle,
-        pic: secondpicUrl
-      },
-      {
-        title: thirdtitle,
-        pic: thirdpicUrl
-      }
-    ]
+    const recSongsArr = data.deezerArrData.data
     res.send({
       songInfo,
       recSongsArr
@@ -135,14 +114,17 @@ router.get('/music/', async function (req, res) {
 })
 
 
+
 router.get('/songs', async function (req, res) {
   const category = req.query.category.toLowerCase()
   const songs = await Music.find({"category": category})
+
   res.send(songs)
 })
 
-router.post('/music', async function (req, res) {
+router.post(`/music/:key`, async function (req, res) {
   const newSong = req.body
+
 
   const s = new Music({
     name: newSong.songInfo.youTubeTitle,
@@ -164,10 +146,31 @@ router.post('/music', async function (req, res) {
   if (isExist.length === 0) {
     s.save()
     res.send(newSong)
-  } else {
-    res.end()
-  }
 
+  } else {
+    const s = new Music({
+      name: newSong.songInfo.youTubeTitle,
+      songName: newSong.songInfo.songName,
+      singerName: newSong.songInfo.singerName,
+      lyricsArr: newSong.songInfo.lyricsArr,
+      youTubeURL: newSong.songInfo.youTubeURL,
+      youTubeTitle: newSong.songInfo.youTubeTitle,
+      preview: newSong.songInfo.preview
+    })
+    const isExist = await Music.find({
+      $and: [{
+        songName: newSong.songInfo.songName
+      }, {
+        singerName: newSong.songInfo.singerName
+      }]
+    })
+    if (isExist.length === 0) {
+      s.save()
+      res.send(newSong)
+    } else {
+      res.end()
+    }
+  }
 
 })
 
