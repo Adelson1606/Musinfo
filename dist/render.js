@@ -21,7 +21,8 @@ class Renderer {
     const source = $('.error').html()
     const template = Handlebars.compile(source)
     const newHTML = template({ eroor })
-    $('#container').append(newHTML)
+    $('#header').append(newHTML)
+    
   }
 
   renderRecomendations (recSongsArr) {

@@ -273,7 +273,15 @@ div#container {
 
 
 
+
 .type {
     height: 50px;
     cursor: pointer;
 }
+
+.err {
+  color: red;
+  font-size: xx-large;
+}
+
+
