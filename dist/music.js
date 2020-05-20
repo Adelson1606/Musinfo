@@ -5,7 +5,12 @@ class musicApp {
 
   async getSongData (song, singer) {
     const songInfo = await $.get(`/music/?singer=${singer}&song=${song}`) 
-    if (songInfo !== "Sorry, we can't find it. Try another song") {
+
+    if(songInfo=="Ho No! We couldn't find your song. Please try again.") {
+      this.songData = songInfo
+      return;
+    }
+    if (songInfo) {
       const bigArr = songInfo.recSongsArr
       const lenthOfall = bigArr.length
 

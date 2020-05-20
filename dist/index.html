@@ -93,14 +93,14 @@
     <script class="recomendations" type="text/x-handlebars-template">
     <br><br>
     <h1><strong>You may also like</strong></h1>
-    <div class='otherRec'>Show other</div>
     <div class='rec-container'>
     {{#each recSongsArr}}
     <div class='recSong'><label>{{this.title}}</label><br>
         <img src={{this.pic}}>  
     </div>
     {{/each}}
-    </div>
+    </div><br>
+    <div id='others' class='otherRec'>Click here for 3 other songs that might interest you</div><br>
     </script>
 
     <script class="favorites" type="text/x-handlebars-template">

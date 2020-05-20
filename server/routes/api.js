@@ -78,7 +78,7 @@ async function apiRequest (singer, song) {
 router.get('/music/', async function (req, res) {
   const singer = req.query.singer.toLowerCase()
   const song = req.query.song.toLowerCase()
-  const errMessage = "Sorry, we can't find it. Try another song"
+  const errMessage = "Ho No! We couldn't find your song. Please try again."
   const data = await apiRequest(singer, song)
     .catch(function (err) {
       //console.error(err)
