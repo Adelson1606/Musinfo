@@ -269,3 +269,8 @@ div#container {
   width: 100vw;
 }
 
+.err {
+  color: red;
+  font-size: xx-large;
+}
+
