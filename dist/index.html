@@ -24,21 +24,36 @@
     </div><br><br><br>
 
     <div id="container"></div>
+    <div id ="fcontainer"></div>
+    <div id ="pcontainer"></div>
+    <div id ="hcontainer"></div>
+    <div id ="rcontainer"></div>
 
     <script id="song-template" type="text/x-handlebars-template">
-   <div id="songInfo">
-    <div id="clipContainer">
-    <iframe src="http://www.youtube.com/embed/{{songInfo.youTubeURL}}?autoplay=1&loop=1"
-    width="600" height="400" frameborder="0" allowfullscreen></iframe><br><br><br>
-    <div id="favoriteBar">
-    <label ><strong>Add To playlist</strong></label>
-    <div class='type' id='hiphop'>Hip-hop</div>
-    <!-- <i id='favBut' class="fa fa-heart"></i> -->
-    <div class='type' id='rock'>ROCK</div>
-    <div class='type' id='pop'>POP</div>
-   
+
+    <div id="songInfo">
+        <div id="clipContainer">
+               <iframe src="http://www.youtube.com/embed/{{songInfo.youTubeURL}}?autoplay=1&loop=1"
+                width="600" height="400" frameborder="0" allowfullscreen></iframe><br><br><br>
+        <div id="favoriteBar">
+              <i id='favBut' class="fa fa-heart"></i>
+              <label ><strong>Add To Favorites</strong></label>
+        </div>
+        <div id="rockBar">
+               <i id='rockBut' class="fa fa-heart"></i>
+                <label ><strong>Add To Rock Playlist</strong></label>
+        </div>
+        <div id="popBar">
+                <i id='popBut' class="fa fa-heart"></i>
+                <label ><strong>Add To Pop Playlist</strong></label>
+       </div>
+        <div id="hiphopBar">
+                <i id='hiphopBut' class="fa fa-heart"></i>
+                <label ><strong>Add To Hip-Hop Playlist</strong></label>
+       </div>
+
     </div>
-    </div>
+
     <div id="rightSideContainer">
     <div id="lyrics">
         <h1>{{songInfo.singerName}} - {{songInfo.songName}}</h1>
@@ -103,6 +118,64 @@
         </div>
     </div>
     </script>
+
+
+    <script class="pop" type="text/x-handlebars-template">
+        <br><br>
+        <div class="popMainContainer">
+        <h1><strong>Pop songs playlist</strong></h1>
+        <div class='fav-container'>
+        {{#each popArr}}
+        <div class="favoriteLine">
+        <div class='favSong'>{{singerName}}-{{songName}}</div>
+        <audio controls>
+            <source src={{preview}} type="audio/mpeg">
+        </audio>
+        <div class='remove'><i class="fa fa-minus-circle"></i></div>
+        </div>
+        {{/each}}
+        </div><br>
+        </div>
+        </script>
+
+        <script class="hiphop" type="text/x-handlebars-template">
+            <br><br>
+            <div class="hiphopMainContainer">
+            <h1><strong>Hip-Hop songs playlist</strong></h1>
+            <div class='fav-container'>
+            {{#each hiphopArr}}
+            <div class="favoriteLine">
+            <div class='favSong'>{{singerName}}-{{songName}}</div>
+            <audio controls>
+                <source src={{preview}} type="audio/mpeg">
+            </audio>
+            <div class='remove'><i class="fa fa-minus-circle"></i></div>
+            </div>
+            {{/each}}
+            </div><br>
+            </div>
+            </script>
+
+
+
+
+            <script class="rock" type="text/x-handlebars-template">
+                <br><br>
+                <div class="rockMainContainer">
+                <h1><strong>Rock songs playlist</strong></h1>
+                <div class='fav-container'>
+                {{#each rockArr}}
+                <div class="favoriteLine">
+                <div class='favSong'>{{singerName}}-{{songName}}</div>
+                <audio controls>
+                    <source src={{preview}} type="audio/mpeg">
+                </audio>
+                <div class='remove'><i class="fa fa-minus-circle"></i></div>
+                </div>
+                {{/each}}
+                </div><br>
+                </div>
+                </script>
 
 
 

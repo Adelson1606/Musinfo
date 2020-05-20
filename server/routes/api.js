@@ -114,84 +114,39 @@ router.get('/music/', async function (req, res) {
 })
 
 
-router.get('/songs/', async function (req, res) {
- // const collection = req.params.key ///////////
-  const songs = await Music.find({})
+
+router.get('/songs', async function (req, res) {
+  const category = req.query.category.toLowerCase()
+  const songs = await Music.find({"category": category})
+
   res.send(songs)
 })
 
 router.post(`/music/:key`, async function (req, res) {
   const newSong = req.body
-  const whereToSave = req.params.key
-  if (whereToSave === 'rock') {
-    const s = new Rock({
-      name: newSong.songInfo.youTubeTitle,
-      songName: newSong.songInfo.songName,
-      singerName: newSong.songInfo.singerName,
-      lyricsArr: newSong.songInfo.lyricsArr,
-      youTubeURL: newSong.songInfo.youTubeURL,
-      youTubeTitle: newSong.songInfo.youTubeTitle,
-      preview: newSong.songInfo.preview
-    })
-    const isExist = await Rock.find({
-      $and: [{
-        songName: newSong.songInfo.songName
-      }, {
-        singerName: newSong.songInfo.singerName
-      }]
-    })
-    if (isExist.length === 0) {
-      s.save()
-      res.send(newSong)
-    } else {
-      res.end()
-    }
-  } else if (whereToSave === 'pop') {
-    const s = new Pop({
-      name: newSong.songInfo.youTubeTitle,
-      songName: newSong.songInfo.songName,
-      singerName: newSong.songInfo.singerName,
-      lyricsArr: newSong.songInfo.lyricsArr,
-      youTubeURL: newSong.songInfo.youTubeURL,
-      youTubeTitle: newSong.songInfo.youTubeTitle,
-      preview: newSong.songInfo.preview
-    })
-    const isExist = await Pop.find({
-      $and: [{
-        songName: newSong.songInfo.songName
-      }, {
-        singerName: newSong.songInfo.singerName
-      }]
-    })
-    if (isExist.length === 0) {
-      s.save()
-      res.send(newSong)
-    } else {
-      res.end()
-    }
-  } else if (whereToSave === 'hiphop') {
-    const s = new Hiphop({
-      name: newSong.songInfo.youTubeTitle,
-      songName: newSong.songInfo.songName,
-      singerName: newSong.songInfo.singerName,
-      lyricsArr: newSong.songInfo.lyricsArr,
-      youTubeURL: newSong.songInfo.youTubeURL,
-      youTubeTitle: newSong.songInfo.youTubeTitle,
-      preview: newSong.songInfo.preview
-    })
-    const isExist = await Hiphop.find({
-      $and: [{
-        songName: newSong.songInfo.songName
-      }, {
-        singerName: newSong.songInfo.singerName
-      }]
-    })
-    if (isExist.length === 0) {
-      s.save()
-      res.send(newSong)
-    } else {
-      res.end()
-    }
+
+
+  const s = new Music({
+    name: newSong.songInfo.youTubeTitle,
+    songName: newSong.songInfo.songName,
+    singerName: newSong.songInfo.singerName,
+    lyricsArr: newSong.songInfo.lyricsArr,
+    youTubeURL: newSong.songInfo.youTubeURL,
+    youTubeTitle: newSong.songInfo.youTubeTitle,
+    preview: newSong.songInfo.preview,
+    category: newSong.category
+  })
+  const isExist = await Music.find({
+    $and: [{
+      songName: newSong.songInfo.songName
+    }, {
+      singerName: newSong.songInfo.singerName
+    }]
+  })
+  if (isExist.length === 0) {
+    s.save()
+    res.send(newSong)
+
   } else {
     const s = new Music({
       name: newSong.songInfo.youTubeTitle,

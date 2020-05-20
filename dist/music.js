@@ -65,12 +65,33 @@ class musicApp {
 
   }
   
-  async getFavorites (key) {
-    const favSongsArr = await $.get(`/songs`)
+  async getFavorites() {
+    const favSongsArr = await $.get('/songs/?category=favorites')
+
     if (favSongsArr) {
       this.favorites = favSongsArr
     }
   }
+  
+  async getPop() {
+    const PopArr = await $.get('/songs/?category=pop')
+    if (PopArr) {
+      this.pop = PopArr
+    }
+  }
 
+  async getHiphop() {
+    const hiphopArr = await $.get('/songs/?category=hiphop')
+    if (hiphopArr) {
+      this.hiphop = hiphopArr
+    }
+  }
+
+  async getRock() {
+    const rockArr = await $.get('/songs/?category=rock')
+    if (rockArr) {
+      this.rock = rockArr
+    }
+  }
 
 }
