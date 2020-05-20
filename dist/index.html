@@ -64,13 +64,15 @@
 
 
 
-    
+
     <script class="recomendations" type="text/x-handlebars-template">
     <br><br>
     <h1><strong>You may also like</strong></h1>
     <div class='rec-container'>
     {{#each recSongsArr}}
-    <div class='recSong'><label>{{this}}</label><br><i class="fa fa-music"></i></div>
+    <div class='recSong'><label>{{this.title}}</label><br>
+        <img src={{this.pic}}>  
+    </div>
     {{/each}}
     </div>
     </script>
@@ -81,6 +83,10 @@
     <div class='fav-container'>
     {{#each favSongsArr}}
     <div class='favSong'>{{singerName}}-{{songName}}</div>
+    <audio controls>
+        <source src={{preview}} type="audio/mpeg">
+    </audio>
+    <div class='remove'>REMOVE FROM FAV</div>
     {{/each}}
     </div>
     </script>

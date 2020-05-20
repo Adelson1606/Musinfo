@@ -128,7 +128,7 @@ body {
     font-size: x-large;
     justify-items: center;
     align-items: center;
-    border: black solid 1px;
+    /* border: black solid 1px; */
 }
 
 
@@ -138,12 +138,12 @@ body {
     justify-self: center;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    /* background-color: blue; */
-    height: 150px;
+    /* background-color: #eadfb1; */
+    height: 300px;
     font-size: x-large;
     justify-items: center;
     align-items: center;
-    border: black solid 1px;
+    /* border: black solid 1px; */
 }
 
 
@@ -235,3 +235,17 @@ body {
         display: block;
     }
   }
+
+
+div#container {
+    background-color: #eadfb1;
+    ;
+}
+
+.fav-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    font-size: x-large;
+    justify-items: center;
+    align-items: center;
+}
