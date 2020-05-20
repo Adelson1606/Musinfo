@@ -2,7 +2,11 @@ const express = require('express')
 const router = express.Router()
 const request = require('axios')
 
+const Hiphop = require('../models/Hiphop')
+const Rock = require('../models/Rock')
+const Pop = require('../models/Pop')
 const Music = require('../models/Music')
+
 
 const googleApiParams = {
   maxResults: 1,
@@ -110,37 +114,108 @@ router.get('/music/', async function (req, res) {
 })
 
 
-router.get('/songs', async function (req, res) {
+router.get('/songs/', async function (req, res) {
+ // const collection = req.params.key ///////////
   const songs = await Music.find({})
   res.send(songs)
 })
 
-router.post('/music', async function (req, res) {
+router.post(`/music/:key`, async function (req, res) {
   const newSong = req.body
-
-  const s = new Music({
-    name: newSong.songInfo.youTubeTitle,
-    songName: newSong.songInfo.songName,
-    singerName: newSong.songInfo.singerName,
-    lyricsArr: newSong.songInfo.lyricsArr,
-    youTubeURL: newSong.songInfo.youTubeURL,
-    youTubeTitle: newSong.songInfo.youTubeTitle,
-    preview: newSong.songInfo.preview
-  })
-  const isExist = await Music.find({
-    $and: [{
-      songName: newSong.songInfo.songName
-    }, {
-      singerName: newSong.songInfo.singerName
-    }]
-  })
-  if (isExist.length === 0) {
-    s.save()
-    res.send(newSong)
+  const whereToSave = req.params.key
+  if (whereToSave === 'rock') {
+    const s = new Rock({
+      name: newSong.songInfo.youTubeTitle,
+      songName: newSong.songInfo.songName,
+      singerName: newSong.songInfo.singerName,
+      lyricsArr: newSong.songInfo.lyricsArr,
+      youTubeURL: newSong.songInfo.youTubeURL,
+      youTubeTitle: newSong.songInfo.youTubeTitle,
+      preview: newSong.songInfo.preview
+    })
+    const isExist = await Rock.find({
+      $and: [{
+        songName: newSong.songInfo.songName
+      }, {
+        singerName: newSong.songInfo.singerName
+      }]
+    })
+    if (isExist.length === 0) {
+      s.save()
+      res.send(newSong)
+    } else {
+      res.end()
+    }
+  } else if (whereToSave === 'pop') {
+    const s = new Pop({
+      name: newSong.songInfo.youTubeTitle,
+      songName: newSong.songInfo.songName,
+      singerName: newSong.songInfo.singerName,
+      lyricsArr: newSong.songInfo.lyricsArr,
+      youTubeURL: newSong.songInfo.youTubeURL,
+      youTubeTitle: newSong.songInfo.youTubeTitle,
+      preview: newSong.songInfo.preview
+    })
+    const isExist = await Pop.find({
+      $and: [{
+        songName: newSong.songInfo.songName
+      }, {
+        singerName: newSong.songInfo.singerName
+      }]
+    })
+    if (isExist.length === 0) {
+      s.save()
+      res.send(newSong)
+    } else {
+      res.end()
+    }
+  } else if (whereToSave === 'hiphop') {
+    const s = new Hiphop({
+      name: newSong.songInfo.youTubeTitle,
+      songName: newSong.songInfo.songName,
+      singerName: newSong.songInfo.singerName,
+      lyricsArr: newSong.songInfo.lyricsArr,
+      youTubeURL: newSong.songInfo.youTubeURL,
+      youTubeTitle: newSong.songInfo.youTubeTitle,
+      preview: newSong.songInfo.preview
+    })
+    const isExist = await Hiphop.find({
+      $and: [{
+        songName: newSong.songInfo.songName
+      }, {
+        singerName: newSong.songInfo.singerName
+      }]
+    })
+    if (isExist.length === 0) {
+      s.save()
+      res.send(newSong)
+    } else {
+      res.end()
+    }
   } else {
-    res.end()
+    const s = new Music({
+      name: newSong.songInfo.youTubeTitle,
+      songName: newSong.songInfo.songName,
+      singerName: newSong.songInfo.singerName,
+      lyricsArr: newSong.songInfo.lyricsArr,
+      youTubeURL: newSong.songInfo.youTubeURL,
+      youTubeTitle: newSong.songInfo.youTubeTitle,
+      preview: newSong.songInfo.preview
+    })
+    const isExist = await Music.find({
+      $and: [{
+        songName: newSong.songInfo.songName
+      }, {
+        singerName: newSong.songInfo.singerName
+      }]
+    })
+    if (isExist.length === 0) {
+      s.save()
+      res.send(newSong)
+    } else {
+      res.end()
+    }
   }
-
 
 })
 

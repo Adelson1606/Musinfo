@@ -45,10 +45,10 @@ class musicApp {
   }
 
 
-  async saveSong () {
+  async saveSong (key) {
     $.ajax({
       type: "POST",
-      url: '/music',
+      url: `/music/${key}`,
       contentType: 'application/json; charset=utf-8',
       dataType: 'json',
       data: JSON.stringify(this.songData)
@@ -65,8 +65,8 @@ class musicApp {
 
   }
   
-  async getFavorites () {
-    const favSongsArr = await $.get('/songs')
+  async getFavorites (key) {
+    const favSongsArr = await $.get(`/songs`)
     if (favSongsArr) {
       this.favorites = favSongsArr
     }

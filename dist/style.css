@@ -116,8 +116,10 @@ body {
   }
 
 #favoriteBar {
-    position: relative;
-    margin-left: 150px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  position: relative;
+  margin-left: 40px;
 }
 
 .rec-container{
@@ -269,3 +271,9 @@ div#container {
   width: 100vw;
 }
 
+
+
+.type {
+    height: 50px;
+    cursor: pointer;
+}
