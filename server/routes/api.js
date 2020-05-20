@@ -101,32 +101,7 @@ router.get('/music/', async function (req, res) {
     } else {
       songInfo.preview = 'https://cdns-preview-1.dzcdn.net/stream/c-13039fed16a173733f227b0bec631034-10.mp3'
     }
-    const lenthOfall = data.deezerArrData.data.length
-
-    const getRandom1 = Math.floor(Math.random() * lenthOfall)
-    const getRandom2 = Math.floor(Math.random() * lenthOfall)
-    const getRandom3 = Math.floor(Math.random() * lenthOfall)
-
-    const firsttitle = data.deezerArrData.data[getRandom1].title
-    const secondtitle = data.deezerArrData.data[getRandom2].title
-    const thirdtitle = data.deezerArrData.data[getRandom3].title
-    const firstpicUrl = data.deezerArrData.data[getRandom1].album.cover_medium
-    const secondpicUrl = data.deezerArrData.data[getRandom2].album.cover_medium
-    const thirdpicUrl = data.deezerArrData.data[getRandom3].album.cover_medium
-    const recSongsArr = [
-      {
-        title: firsttitle,
-        pic: firstpicUrl
-      },
-      {
-        title: secondtitle,
-        pic: secondpicUrl
-      },
-      {
-        title: thirdtitle,
-        pic: thirdpicUrl
-      }
-    ]
+    const recSongsArr = data.deezerArrData.data
     res.send({
       songInfo,
       recSongsArr
