@@ -21,7 +21,7 @@ const handleSearch = async function (songName, singerName) {
 
 const handleTraanslate = async function (songName, singerName, to) {
   await App.getTranslated(songName, singerName, to)
-  renderer.insertTranslate(App.translatedText)
+  renderer.insertTranslate(App.translatedText,songName, singerName)
 }
 
 
@@ -36,39 +36,39 @@ $('#button').on('click', function () {
 
 
 $('#container').on('click', '#he', function () {
-  const songName = $('#songIn').val()
-  const singerName = $('#artistIn').val()
+  const songName = App.songData.songInfo.songName
+  const singerName = App.songData.songInfo.singerName
   handleTraanslate(songName, singerName, 'he')
 })
 
 $('#container').on('click', '#ru', function () {
-  const songName = $('#songIn').val()
-  const singerName = $('#artistIn').val()
+  const songName = App.songData.songInfo.songName
+  const singerName = App.songData.songInfo.singerName
   handleTraanslate(songName, singerName, 'ru')
 })
 
 
 $('#container').on('click', '#ar', function () {
-  const songName = $('#songIn').val()
-  const singerName = $('#artistIn').val()
+  const songName = App.songData.songInfo.songName
+  const singerName = App.songData.songInfo.singerName
   handleTraanslate(songName, singerName, 'ar')
 })
 
 
 $('#container').on('click', '#es', function () {
-  const songName = $('#songIn').val()
-  const singerName = $('#artistIn').val()
+  const songName = App.songData.songInfo.songName
+  const singerName = App.songData.songInfo.singerName
   handleTraanslate(songName, singerName, 'es')
 })
 
 $('#container').on('click', '#fr', function () {
-  const songName = $('#songIn').val()
-  const singerName = $('#artistIn').val()
+  const songName = App.songData.songInfo.songName
+  const singerName = App.songData.songInfo.singerName
   handleTraanslate(songName, singerName, 'fr')
 })
 $('#container').on('click', '#en', function () {
-  const songName = $('#songIn').val()
-  const singerName = $('#artistIn').val()
+  const songName = App.songData.songInfo.songName
+  const singerName = App.songData.songInfo.singerName
   handleTraanslate(songName, singerName, 'en')
 })
 
