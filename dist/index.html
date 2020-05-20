@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, maximum-scale=1.0" />
     <title>MUSICINFO</title>
     <link rel="stylesheet" href="font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="style.css">
@@ -11,9 +11,16 @@
 
 <body>
     <div id="header">
-        <input id="songIn" class='input' type="text" placeholder="Song name">
-        <input id="artistIn" class='input' type="text" placeholder="Artist name">
+        <div class="form__group field">
+        <input name="songIn" id="songIn" class='input form__field' type="text" placeholder="Song name">
+        <label for="songIn" class="form__label">Song name</label>
+    </div>
+    <div class="form__group field">
+        <input name="artistIn" id="artistIn" class='input form__field' type="text" placeholder="Artist name">
+        <label for="artistIn" class="form__label">Artist name</label>
+    </div>
         <button id='button' type="submit"><i class="fa fa-search"></i></button>
+        
     </div><br><br><br>
 
     <div id="container"></div>
@@ -44,6 +51,7 @@
             <img class="flag" id="ar" src="https://image.flaticon.com/icons/svg/197/197558.svg">
             <img class="flag" id="es" src="https://image.flaticon.com/icons/svg/197/197593.svg">
             <img class="flag" id="fr" src="https://image.flaticon.com/icons/svg/197/197560.svg">
+            <img class="flag" id="en" src=https://cdn.countryflags.com/thumbs/united-states-of-america/flag-round-250.png>
         </div>
     </div>
    </div>
