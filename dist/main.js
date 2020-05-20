@@ -6,6 +6,10 @@ const renderRecomendations = renderer.renderRecomendations
 
 const renderFavorites = renderer.renderFavorites
 
+async function showFavFromDB() {
+  await App.getFavorites()
+  renderFavorites(App.favorites)
+}
 
 const handleSearch = async function (songName, singerName) {
   await App.getSongData(songName, singerName)
@@ -22,6 +26,12 @@ const handleSearch = async function (songName, singerName) {
 const handleTraanslate = async function (songName, singerName, to) {
   await App.getTranslated(songName, singerName, to)
   renderer.insertTranslate(App.translatedText,songName, singerName)
+}
+
+const handleDeleteFromFav = async function(singer,song) {
+  await App.deleteSong(singer,song)
+  await App.getFavorites()
+  renderFavorites(App.favorites)
 }
 
 
@@ -78,6 +88,7 @@ const handleFavorite = async function () {
 
 $('#container').on('click', '#favBut', function () {
   handleFavorite()
+  showFavFromDB()
 })
 
 $('#container').on('click', '.recSong', function () {
@@ -86,7 +97,7 @@ $('#container').on('click', '.recSong', function () {
   handleSearch(songName, singerName)
 })
 
-// two blocks the same? do we remove it? ####
+
 $('#container').on('click', '.favSong', function () {
   const songName = $(this).text().split('-')[1]
   const singerName = $(this).text().split('-')[0]
@@ -94,10 +105,14 @@ $('#container').on('click', '.favSong', function () {
 })
 
 
-async function showFavFromDB() {
-  await App.getFavorites()
-  renderFavorites(App.favorites)
-}
+$('#container').on('click', '.remove', function () {
+  const FullInfo = $(this).closest('.favoriteLine').find('.favSong').text().split('-')
+  const singer = FullInfo[0]
+  const song = FullInfo[1]
+  handleDeleteFromFav(singer,song)
+})
+
+
 
 document.getElementById('artistIn').addEventListener("keyup", function (event) {
   // Number 13 is the "Enter" key on the keyboard

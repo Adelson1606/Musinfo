@@ -32,7 +32,7 @@ class Renderer {
   }
 
   renderFavorites(favSongsArr) {
-     console.log(favSongsArr)
+     $('.favoritesMainContainer').empty()
      const source = $('.favorites').html()
      const template = Handlebars.compile(source)
      const newHTML = template({favSongsArr})

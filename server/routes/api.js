@@ -153,7 +153,11 @@ router.post('/music', async function (req, res) {
     preview: newSong.songInfo.preview
   })
   const isExist = await Music.find({
-    name: s.name
+    $and: [{
+      songName: newSong.songInfo.songName
+    }, {
+      singerName: newSong.songInfo.singerName
+    }]
   })
   if (isExist.length === 0) {
     s.save()
