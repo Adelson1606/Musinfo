@@ -124,6 +124,13 @@ $('#container').on('click','#shuffleBar',function () {
 
 
 
+$('#container').on('click', '.otherRec', function () {
+   const songName = App.songData.songInfo.songName
+   const singerName = App.songData.songInfo.singerName
+   handleSearch(songName, singerName)
+})
+
+
 document.getElementById('artistIn').addEventListener("keyup", function (event) {
   // Number 13 is the "Enter" key on the keyboard
   if (event.keyCode === 13) {
