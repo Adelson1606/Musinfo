@@ -8,7 +8,8 @@ const musicSchema = new Schema({
   lyricsArr: Array,
   youTubeURL: String,
   youTubeTitle: String,
-  preview: String
+  preview: String,
+  category: String
 })
 const Music = mongoose.model("musics", musicSchema)
 

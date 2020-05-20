@@ -136,7 +136,8 @@ router.get('/music/', async function (req, res) {
 
 
 router.get('/songs', async function (req, res) {
-  const songs = await Music.find({})
+  const category = req.query.category.toLowerCase()
+  const songs = await Music.find({"category": category})
   res.send(songs)
 })
 
@@ -150,7 +151,8 @@ router.post('/music', async function (req, res) {
     lyricsArr: newSong.songInfo.lyricsArr,
     youTubeURL: newSong.songInfo.youTubeURL,
     youTubeTitle: newSong.songInfo.youTubeTitle,
-    preview: newSong.songInfo.preview
+    preview: newSong.songInfo.preview,
+    category: newSong.category
   })
   const isExist = await Music.find({
     $and: [{
