@@ -13,7 +13,7 @@ async function showFavFromDB() {
 
 const handleSearch = async function (songName, singerName) {
   await App.getSongData(songName, singerName)
-  if (App.songData === "Sorry, we can't find it. Try another song") {
+  if (App.songData === "Ho No! We couldn't find your song. Please try again.") {
     renderErr(App.songData)
   } else {
     render(App.songData)

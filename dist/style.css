@@ -119,6 +119,8 @@ body {
 #favoriteBar {
     position: relative;
     margin-left: 150px;
+    font-family: 'fantasy';
+    color: #472b21;
 }
 
 .rec-container{
@@ -273,5 +275,6 @@ div#container {
 .err {
   color: red;
   font-size: xx-large;
+  font-family: fantasy;
 }
 
