@@ -43,16 +43,16 @@ const handleSearch = async function (songName, singerName) {
     renderPop(App.pop)
     renderHiphop(App.hiphop)
     renderRock(App.rock)
- }
+  }
 }
 
 const handleTraanslate = async function (songName, singerName, to) {
   await App.getTranslated(songName, singerName, to)
-  renderer.insertTranslate(App.translatedText,songName, singerName)
+  renderer.insertTranslate(App.translatedText, songName, singerName)
 }
 
-const handleDeleteFromFav = async function(singer,song) {
-  await App.deleteSong(singer,song)
+const handleDeleteFromFav = async function (singer, song) {
+  await App.deleteSong(singer, song)
   await App.getFavorites()
   await App.getPop()
   await App.getRock()
@@ -169,7 +169,7 @@ $('#container').on('click', '.recSong', function () {
 })
 
 
-$('#container').on('click', '.favSong', function () {
+$('.cont').on('click', '.favSong', function () {
   const songName = $(this).text().split('-')[1]
   const singerName = $(this).text().split('-')[0]
   handleSearch(songName, singerName)
@@ -180,13 +180,13 @@ $('.cont').on('click', '.remove', function () {
   const FullInfo = $(this).closest('.favoriteLine').find('.favSong').text().split('-')
   const singer = FullInfo[0]
   const song = FullInfo[1]
-  handleDeleteFromFav(singer,song)
+  handleDeleteFromFav(singer, song)
 })
 
 
 
-$('#fcontainer').on('click','#shuffleBar',function () {
-  const favoritesLength  =  App.favorites.length
+$('#fcontainer').on('click', '#shuffleBar', function () {
+  const favoritesLength = App.favorites.length
   const randomIndex = Math.floor(Math.random() * favoritesLength)
   const songName = App.favorites[randomIndex].songName
   const singerName = App.favorites[randomIndex].singerName
@@ -196,9 +196,9 @@ $('#fcontainer').on('click','#shuffleBar',function () {
 
 
 $('#container').on('click', '.otherRec', function () {
-   const songName = App.songData.songInfo.songName
-   const singerName = App.songData.songInfo.singerName
-   handleSearch(songName, singerName)
+  const songName = App.songData.songInfo.songName
+  const singerName = App.songData.songInfo.singerName
+  handleSearch(songName, singerName)
 })
 
 

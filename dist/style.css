@@ -128,6 +128,10 @@ strong:hover{
   }
 
 
+.favSong {
+  cursor: pointer;
+  }
+
 
 #favBut:active {
     box-shadow: 0 1px darkred;
@@ -173,6 +177,7 @@ strong:hover{
 
 .fa-minus-circle {
   color: darkred;
+  cursor: pointer;
 }
 
 
@@ -331,4 +336,12 @@ div#container {
 }
 .popMainContainer{
   background-color: #eadfb161;
+}
+
+
+
+#others {
+  font-size: medium;
+  text-decoration: underline;
+  color: darkgoldenrod;
 }
