@@ -12,15 +12,15 @@
 <body>
     <div id="header">
         <div class="form__group field">
-        <input name="songIn" id="songIn" class='input form__field' type="text" placeholder="Song name">
-        <label for="songIn" class="form__label">Song name</label>
-    </div>
-    <div class="form__group field">
-        <input name="artistIn" id="artistIn" class='input form__field' type="text" placeholder="Artist name">
-        <label for="artistIn" class="form__label">Artist name</label>
-    </div>
+            <input name="songIn" id="songIn" class='input form__field' type="text" placeholder="Song name">
+            <label for="songIn" class="form__label">Song name</label>
+        </div>
+        <div class="form__group field">
+            <input name="artistIn" id="artistIn" class='input form__field' type="text" placeholder="Artist name">
+            <label for="artistIn" class="form__label">Artist name</label>
+        </div>
         <button id='button' type="submit"><i class="fa fa-search"></i></button>
-        
+
     </div><br><br><br>
 
     <div id="container"></div>
@@ -91,7 +91,11 @@
     <div class='remove'><i class="fa fa-minus-circle"></i></div>
     </div>
     {{/each}}
-    </div>
+    </div><br>
+    <div id="shuffleBar">
+        <label >Confused? Click to play a random song of your favorites</label>
+        <i class="fa fa-play-circle"></i>
+        </div>
     </div>
     </script>
 
