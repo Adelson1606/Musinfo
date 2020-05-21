@@ -12,12 +12,12 @@ app.use(express.static(path.join(__dirname, 'node_modules')))
 
 // Mongoose setup
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/musicDB', { useNewUrlParser: true })
+mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost/musicDB', { useNewUrlParser: true , useUnifiedTopology: true })
 
 app.use('/', api)
 
 
-const port = 3000
-app.listen(port, function () {
-  console.log(`Music running on port ${port}`)
+const PORT = 3000
+app.listen(process.env.PORT || PORT, function () {
+  console.log(`Music running on port ${PORT}`)
 })
