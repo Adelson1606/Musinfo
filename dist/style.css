@@ -279,6 +279,18 @@ strong:hover{
 
         display: block;
     }
+    iframe{
+      width: 300px;
+      height: 200px;
+    }
+    .rec-container{
+      display: block;
+
+    }
+    .rec-container img{
+      display: none;
+    }
+  
   }
 
 
