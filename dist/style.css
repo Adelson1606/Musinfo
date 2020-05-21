@@ -33,8 +33,9 @@ h1{
 strong{
     color: #2e6260;
     font-family: fantasy;
-    font-style: oblique;
-    font-size: 27px;
+    /* font-style: oblique; */
+    font-size: 30px;
+    letter-spacing: 1px;
 }
 
 strong:hover{
@@ -92,7 +93,7 @@ strong:hover{
 
 #songInfo {
     display: grid;
-    grid-gap: 50px;
+    grid-gap: 10px;
     grid-template-columns: repeat(2,1fr);
 }
 
@@ -300,7 +301,7 @@ strong:hover{
 
 div#container {
     background-color: #eadfb161;
-    ;
+    margin-block-end: 10px;
 }
 
 .fav-container{
@@ -367,7 +368,7 @@ div#container {
   color: darkgoldenrod;
 }
 
-p {font-size: 19px;font-weight: bold;margin: 4px;}
+p {font-size: 25px;font-weight: bold;margin: 4px;}
 
 div#favoriteBar {
     margin: 10px;
@@ -396,6 +397,7 @@ input#nameofnewplaylist {
     background-color: #f2efe0;
     /* color: aqua; */
     /* place-content: center; */
+    margin-left: 20px;
 }
 
 button#createPlaylistBtn {
