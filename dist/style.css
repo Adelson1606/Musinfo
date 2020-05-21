@@ -288,8 +288,12 @@ strong:hover{
 
     }
     .rec-container img{
-      display: none;
+      width:100px;
+      height: 100px;
     }
+    audio {
+      width: 250px;
+  }
   
   }
 
@@ -357,13 +361,13 @@ div#container {
 
 
 #others {
+  /* margin: 50px; */
   font-size: medium;
   text-decoration: underline;
   color: darkgoldenrod;
 }
 
-p {
-}
+p {font-size: 19px;font-weight: bold;margin: 4px;}
 
 div#favoriteBar {
     margin: 10px;
@@ -398,3 +402,9 @@ button#createPlaylistBtn {
     height: 30px;
     width: 50px;
 }
+
+audio {
+    width: 250px;
+}
+
+div#lyrics {}
