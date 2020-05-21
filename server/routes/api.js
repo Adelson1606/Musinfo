@@ -50,19 +50,19 @@ const toTitleCase = (phrase) => {
 async function apiRequest (singer, song) {
   const q = singer + ' ' + song
   const qs = new URLSearchParams(googleApiParams).toString()
-  // const youtubereq = await request(`https://www.googleapis.com/youtube/v3/search?q=${q}&` + qs)
-  //  const youtubereq = await request('https://www.youtube.com/watch?v=YQHsXMglC9A')
+  const youtubereq = await request(`https://www.googleapis.com/youtube/v3/search?q=${q}&` + qs)
+  // const youtubereq = await request('https://www.youtube.com/watch?v=YQHsXMglC9A')
   const lyricreq = await request(`https://api.lyrics.ovh/v1/${singer}/${song}`)
   const deezerreq = await request(`https://api.deezer.com/search?q=${singer}`)
-  //const youtubedata = youtubereq.data.items[0]
-  const youtubedata = {
-    id: {
-      videoId: 'YQHsXMglC9A'
-    },
-    snippet: {
-      title: 'It is not ok youtube'
-    }
-  } 
+  const youtubedata = youtubereq.data.items[0]
+  // const youtubedata = {
+  //   id: {
+  //     videoId: 'YQHsXMglC9A'
+  //   },
+  //   snippet: {
+  //     title: 'It is not ok youtube'
+  //   }
+  // } 
  
   const lyricsString = lyricreq.data.lyrics
   const lyricsArrData = lyricsString.split(/\r?\n/)
@@ -111,7 +111,7 @@ router.get('/music/', async function (req, res) {
 
 
 router.get('/songs', async function (req, res) {
-  const category = req.query.category.toLowerCase()
+  const category = req.query.category
   const songs = await Music.find({ 'category': category })
 
   res.send(songs)
