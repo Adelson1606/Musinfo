@@ -139,6 +139,7 @@ body {
 
 .fa-minus-circle {
   color: darkred;
+  justify-self: self-start;
 }
 
 
@@ -274,3 +275,11 @@ div#container {
   font-size: xx-large;
 }
 
+audio {
+      margin: 10px;
+      height: 45px;
+      border-color: #000;
+      border-width: 4px;
+      border-style: ridge;
+      border-radius: 53px;
+}

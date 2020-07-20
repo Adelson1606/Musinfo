@@ -112,8 +112,6 @@ $('#container').on('click', '.remove', function () {
   handleDeleteFromFav(singer,song)
 })
 
-
-
 $('#container').on('click','#shuffleBar',function () {
   const favoritesLength  =  App.favorites.length
   const randomIndex = Math.floor(Math.random() * favoritesLength)
@@ -121,8 +119,6 @@ $('#container').on('click','#shuffleBar',function () {
   const singerName = App.favorites[randomIndex].singerName
   handleSearch(songName, singerName)
 })
-
-
 
 document.getElementById('artistIn').addEventListener("keyup", function (event) {
   // Number 13 is the "Enter" key on the keyboard
