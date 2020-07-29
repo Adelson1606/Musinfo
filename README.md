@@ -1,4 +1,4 @@
-# MusicInfo
+# MusInfo
 Web-app that allows users to search in one place by name of singer and songs name video, lyrics (include translation) and recommendation
 
 ## Screenshots and Features
