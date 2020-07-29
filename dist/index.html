@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, maximum-scale=1.0" />
     <title>MUSICINFO</title>
     <link rel="stylesheet" href="font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="style.css">
@@ -11,22 +11,60 @@
 
 <body>
     <div id="header">
-        <input id="songIn" class='input' type="text" placeholder="Song name">
-        <input id="artistIn" class='input' type="text" placeholder="Artist name">
-        <button id='button' type="submit"><i class="fa fa-search"></i></button>
-    </div><br><br><br>
+        <div class="form__group field">
+            <input name="songIn" id="songIn" class='input form__field' type="text" placeholder="Song name">
+            <label for="songIn" class="form__label">Song name</label>
+        </div>
+        <div class="form__group field">
+            <input name="artistIn" id="artistIn" class='input form__field' type="text" placeholder="Artist name">
+            <label for="artistIn" class="form__label">Artist name</label>
+        </div>
+        <button id='button' type="submit"><i class="fa fa-search"></i></button><br>
+    </div>
 
-    <div id="container"></div>
+    <div class="cont" id="container"></div>
+    <div class="cont" id="fcontainer"></div>
+    <div class="cont" id="pcontainer"></div>
+    <div class="cont" id="hcontainer"></div>
+    <div class="cont" id="rcontainer"></div>  
+    <div class="cont" id="ucontainer"></div>
+ 
 
     <script id="song-template" type="text/x-handlebars-template">
-   <div id="songInfo">
-    <div>
-    <iframe src="http://www.youtube.com/embed/{{songInfo.youTubeURL}}?autoplay=1&loop=1"
-    width="600" height="400" frameborder="0" allowfullscreen></iframe>
+
+    <div id="songInfo">
+        <div id="clipContainer">
+               <iframe src="http://www.youtube.com/embed/{{songInfo.youTubeURL}}?autoplay=1&loop=1"
+                width="600" height="400" frameborder="0" allowfullscreen></iframe><br><br><br>
+        <div id="favoriteBar">
+              <i id='favBut' class="fa fa-heart"></i>
+              <label ><strong>Add To Favorites</strong></label>
+        </div>
+        <div id="rockBar">
+               <i id='rockBut' class="fa fa-heart"></i>
+                <label ><strong>Add To Rock Playlist</strong></label>
+        </div>
+        <div id="popBar">
+                <i id='popBut' class="fa fa-heart"></i>
+                <label ><strong>Add To Pop Playlist</strong></label>
+       </div>
+        <div id="hiphopBar">
+                <i id='hiphopBut' class="fa fa-heart"></i>
+                <label ><strong>Add To Hip-Hop Playlist</strong></label>
+       </div>
+
+       <div id="create">
+        <label ><strong>create playlist</strong></label>
+        <input id='nameofnewplaylist' placeholder="create a new playlist">
+        <button id='createPlaylistBtn'>Add</button>
+</div>
+
+
     </div>
+
     <div id="rightSideContainer">
     <div id="lyrics">
-        <h1>Lyrics</h1>
+        <h1>{{songInfo.singerName}} - {{songInfo.songName}}</h1>
         {{#each songInfo.lyricsArr}}
         <p>{{this}}</p>
         {{/each}}
@@ -40,6 +78,7 @@
             <img class="flag" id="ar" src="https://image.flaticon.com/icons/svg/197/197558.svg">
             <img class="flag" id="es" src="https://image.flaticon.com/icons/svg/197/197593.svg">
             <img class="flag" id="fr" src="https://image.flaticon.com/icons/svg/197/197560.svg">
+            <img class="flag" id="en" src=https://cdn.countryflags.com/thumbs/united-states-of-america/flag-round-250.png>
         </div>
     </div>
    </div>
@@ -47,8 +86,128 @@
 </script>
 
     <script class="error" type="text/x-handlebars-template">
-    <div>{{eroor}}</div>
+    <div class="err">{{eroor}}</div>
    </script>
+
+    <script class="recomendations" type="text/x-handlebars-template">
+    <br><br>
+    <h1><strong>You may also like</strong></h1>
+    <div id='others' class='otherRec'>Click here for 3 other songs that might interest you</div><br>
+    <div class='rec-container'>
+    {{#each recSongsArr}}
+    <div class='recSong'><label>{{this.title}}</label><br>
+        <img src={{this.pic}}>  
+    </div>
+    {{/each}}
+    </div><br>
+  
+    </script>
+
+    <script class="favorites" type="text/x-handlebars-template">
+    <br><br>
+    
+    <div class="favoritesMainContainer">
+    
+    <h1><strong>Favorite songs playlist</strong></h1>
+    <div class='fav-container'>
+    {{#each favSongsArr}}
+    <div class="favoriteLine">
+        <div class='favSong'>{{singerName}}-{{songName}}</div>
+            <audio controls>
+            <source src={{preview}} type="audio/mpeg">
+             </audio>
+        <div class='remove'><i class="fa fa-minus-circle"></i></div>
+    </div>
+    <br>
+    {{/each}}
+    </div><br>
+    
+    <div id="shuffleBar">
+        <label >Confused? Click to play a random song of your favorites</label>
+        <i class="fa fa-play-circle"></i>
+    </div>
+    <h1><strong>You can Add here you favorite song</strong></h1>
+    </div>
+    </script>
+
+
+    <script class="pop" type="text/x-handlebars-template">
+        <br><br>
+        <div class="popMainContainer">
+        <h1><strong>Pop songs playlist</strong></h1>
+        <div class='fav-container'>
+        {{#each popArr}}
+        <div class="favoriteLine">
+            <div class='favSong'>{{singerName}}-{{songName}}</div>
+            <audio controls>
+                 <source src={{preview}} type="audio/mpeg">
+            </audio>
+             <div class='remove'><i class="fa fa-minus-circle"></i></div>
+        </div>
+        <br>
+        {{/each}}
+        </div><br>
+        </div>
+        </script>
+
+    <script class="hiphop" type="text/x-handlebars-template">
+            <br><br>
+            <div class="hiphopMainContainer">
+            <h1><strong>Hip-Hop songs playlist</strong></h1>
+            <div class='fav-container'>
+            {{#each hiphopArr}}
+            <div class="favoriteLine">
+            <div class='favSong hiphop'>{{singerName}}-{{songName}}</div>
+            <audio controls>
+                <source src={{preview}} type="audio/mpeg">
+            </audio>
+            <div class='remove'><i class="fa fa-minus-circle"></i></div>
+            </div><br>
+            {{/each}}
+            </div><br>
+            </div>
+            </script>
+
+
+
+
+    <script class="rock" type="text/x-handlebars-template">
+                <br><br>
+                <div class="rockMainContainer">
+                <h1><strong>Rock songs playlist</strong></h1>
+                <div class='fav-container'>
+                {{#each rockArr}}
+                <div class="favoriteLine rock">
+                <div class='favSong rock'>{{singerName}}-{{songName}}</div>
+                <audio controls>
+                    <source src={{preview}} type="audio/mpeg">
+                </audio>
+                <div class='remove'><i class="fa fa-minus-circle"></i></div>
+                </div><br>
+                {{/each}}
+                </div><br>
+                </div>
+                </script>
+
+<script class="userplaylist" type="text/x-handlebars-template">
+    <br><br>
+    <div class="userMainContainer">
+        <h1><strong>{{category}} songs playlist</strong></h1>
+         <div class='fav-container'>
+        {{#each songsArr}}
+            <div class="favoriteLine">
+            <p class='favSong'>{{singerName}}-{{songName}}</p>
+            <audio controls>
+                <source src={{preview}} type="audio/mpeg">
+            </audio>
+            <div class='remove'><i class="fa fa-minus-circle"></i></div>
+            </div><br>
+      {{/each}}
+    </div><br>
+    </div>
+</script>
+
+
 
     <script src='jquery/dist/jquery.js'></script>
     <script src='handlebars/dist/handlebars.js'></script>

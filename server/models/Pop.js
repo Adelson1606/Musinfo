@@ -1,17 +1,16 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const musicSchema = new Schema({
+const popSchema = new Schema({
   name: String,
   songName: String,
   singerName: String,
   lyricsArr: Array,
   youTubeURL: String,
   youTubeTitle: String,
-  preview: String,
-  category: String
+  preview: String
 })
-const Music = mongoose.model("musics", musicSchema)
+const Pop = mongoose.model("pops", popSchema)
 
 
-module.exports = Music
+module.exports = Pop
