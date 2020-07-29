@@ -178,11 +178,8 @@ strong:hover{
 
 .fa-minus-circle {
   color: darkred;
-<<<<<<< HEAD
   justify-self: self-start;
-=======
   cursor: pointer;
->>>>>>> f05e898426d883232b58d29741c50f643ac3041f
 }
 
 
@@ -413,7 +410,6 @@ audio {
     width: 250px;
 }
 
-<<<<<<< HEAD
 audio {
       margin: 10px;
       height: 45px;
@@ -422,6 +418,3 @@ audio {
       border-style: ridge;
       border-radius: 53px;
 }
-=======
-div#lyrics {}
->>>>>>> f05e898426d883232b58d29741c50f643ac3041f

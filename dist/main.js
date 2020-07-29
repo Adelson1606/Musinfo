@@ -232,10 +232,9 @@ $('#ucontainer').on('click', '.remove', async function () {
 
 })
 
-<<<<<<< HEAD
 $('#container').on('click','#shuffleBar',function () {
-  const favoritesLength  =  App.favorites.length
-=======
+  const favoritesLength  =  App.favorites.length})
+
 $('#ucontainer').on('click', '.favSong', function () {
   const songName = $(this).text().split('-')[1]
   const singerName = $(this).text().split('-')[0]
@@ -245,15 +244,12 @@ $('#ucontainer').on('click', '.favSong', function () {
 
 $('#fcontainer').on('click', '#shuffleBar', function () {
   const favoritesLength = App.favorites.length
->>>>>>> f05e898426d883232b58d29741c50f643ac3041f
   const randomIndex = Math.floor(Math.random() * favoritesLength)
   const songName = App.favorites[randomIndex].songName
   const singerName = App.favorites[randomIndex].singerName
   handleSearch(songName, singerName)
 })
 
-<<<<<<< HEAD
-=======
 
 
 $('#container').on('click', '.otherRec', function () {
@@ -263,7 +259,6 @@ $('#container').on('click', '.otherRec', function () {
 })
 
 
->>>>>>> f05e898426d883232b58d29741c50f643ac3041f
 document.getElementById('artistIn').addEventListener("keyup", function (event) {
   // Number 13 is the "Enter" key on the keyboard
   if (event.keyCode === 13) {
@@ -278,5 +273,3 @@ showFavFromDB()
 showPopFromDB()
 showRockFromDB()
 showHiphopFromDB()
-
-
