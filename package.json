@@ -18,7 +18,7 @@
   "homepage": "https://github.com/Adelson1606/Musinfo#readme",
   "dependencies": {
     "axios": "^0.19.2",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "font-awesome": "^4.7.0",
     "handlebars": "^4.7.6",
     "jquery": "^3.5.1",
